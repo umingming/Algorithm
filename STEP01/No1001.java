@@ -6,5 +6,6 @@ public class No1001 {
 	int b = scan.nextInt();
 	System.out.println(a-b);
 	
+	
 	}
 }
