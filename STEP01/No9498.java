@@ -1,14 +1,12 @@
 import java.util.Scanner;
 public class No9498 {
 	public static void main(String[] args) {
-		Scanner sc = new Scanner(System.in);
-		int score = sc.nextInt();
 		
-		if(score > 89) System.out.println("A");
-		else if(score > 79) System.out.println("B");
-		else if(score > 69) System.out.println("C");
-		else if(score > 59) System.out.println("D");
-		else System.out.println("F");
-	
+		Scanner sc = new Scanner(System.in);
+		int A = sc.nextInt();
+		sc.close();
+		
+		System.out.println((A>=90)?"A": (A>=80)?"B": (A>=70)?"C": (A>=60)?"D": "F");
 	}
 }
+
