@@ -7,6 +7,5 @@ public class No10171 {
 		System.out.println("(  /  )");
 		System.out.println(" \\(__)|");		
 	}
-	
 
 }

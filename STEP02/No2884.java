@@ -7,7 +7,7 @@ public class No2884 {
 		int M = sc.nextInt();
 		sc.close();
 		//M>=45
-		if(M>45) System.out.println(H+" "+(M-45));
+		if(M>=45) System.out.println(H+" "+(M-45));
 		//M<45
 		else if(H!=0&&M<45) System.out.println((H-1)+" "+(M+60-45));
 		//H=0,M<45

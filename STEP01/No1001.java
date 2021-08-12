@@ -5,7 +5,5 @@ public class No1001 {
 	int a = scan.nextInt();
 	int b = scan.nextInt();
 	System.out.println(a-b);
-	
-	
 	}
 }

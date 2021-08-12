@@ -18,4 +18,3 @@ public class No14681 {
 	}
 
 }
-

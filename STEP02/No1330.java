@@ -6,9 +6,6 @@ public class No1330{
         int B = sc.nextInt();
         sc. close();
         
-        if(A>B) System.out.println(">");
-        else if(A==B) System.out.println("==");
-        else System.out.println("<");
-        
+        System.out.println((A>B)?">": (A<B)?"<": "==");
     } 
 }

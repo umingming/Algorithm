@@ -11,6 +11,8 @@ public class No10869 {
 		System.out.println(A*B);
 		System.out.println(A/B);
 		System.out.println(A%B);
+		
+		
 	}
 
 }

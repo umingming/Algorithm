@@ -7,6 +7,7 @@ public class No1000 {
 		int b = sc.nextInt();
 		sc.close();
 		System.out.println(a+b);
+	
 	}
 
 }

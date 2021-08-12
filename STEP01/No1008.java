@@ -8,4 +8,5 @@ public class No1008 {
 		
 		System.out.println(a/b);
 	}
+
 }
