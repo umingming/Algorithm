@@ -10,7 +10,7 @@ public class No9498Switch {
 		int score = scan.nextInt();
 		
 		switch(score/10) {
-		case 0, 1, 2, 3, 4, 5 : 
+		case 0 : case 1 : case 2 : case 3 : case 4 : case 5 : 
 			System.out.println("F");
 			break;
 		case 6 :
@@ -22,7 +22,7 @@ public class No9498Switch {
 		case 8 : 
 			System.out.println("B"); 
 			break;
-		case 9, 10 : 
+		case 9 : case 10 : 
 			System.out.println("A"); 
 			break;
 		}
