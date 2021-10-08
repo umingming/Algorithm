@@ -24,7 +24,7 @@ public class Main {
 		int a = scan.nextInt();
 		int b = scan.nextInt();
 		int c = scan.nextInt();
-		String result = "" + (a * b * c);
+		String result = Integer.toString(a * b * c);
 		
 		int[] nums = new int[10];
 		
