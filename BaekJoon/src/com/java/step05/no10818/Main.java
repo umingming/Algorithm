@@ -1,5 +1,6 @@
 package com.java.step05.no10818;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
@@ -27,22 +28,13 @@ public class Main {
 		int length = scan.nextInt();
 		int[] nums = new int[length];
 		
-		int min = Integer.MAX_VALUE;
-		int max = Integer.MIN_VALUE;
-		
 		for(int i=0; i<nums.length; i++) {
 			nums[i] = scan.nextInt();
-			
-			if(min > nums[i]) {
-				min = nums[i];
-			}
-			
-			if(max < nums[i]) {
-				max = nums[i];
-			}
 		}
 		
-		System.out.println(min + " " + max);
+		Arrays.sort(nums);
+		
+		System.out.println(nums[0] + " " + nums[nums.length-1]);
 
 	}
 
