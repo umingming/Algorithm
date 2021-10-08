@@ -1,5 +1,6 @@
-package com.java.step05;
+package com.java.step05.no2562;
 
+import java.util.HashSet;
 import java.util.Scanner;
 
 public class no3052 {
@@ -23,25 +24,13 @@ public class no3052 {
 		 */
 		
 		Scanner scan = new Scanner(System.in);
-		int[] nums = new int[10];
-		int count = 0;
+		HashSet<Integer> hs = new HashSet<Integer>();
 		
-		for(int i=0; i<nums.length; i++) {
-			nums[i] = (scan.nextInt()) % 42;
-			boolean isDuplicate = false;
-			
-			for(int j=0; j<i; j++) {
-				if(nums[i] == nums[j]) {
-					isDuplicate = true;
-				}
-			}
-			
-			if(!isDuplicate) {
-				count++;
-			}
+		for(int i=0; i<10; i++) {
+			hs.add(scan.nextInt() % 42);
 		}
 		
-		System.out.println(count);
+		System.out.println(hs.size());
 	}
 
 }
