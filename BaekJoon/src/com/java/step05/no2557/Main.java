@@ -29,7 +29,7 @@ public class Main {
 		int[] nums = new int[10];
 		
 		for(int i=0; i<result.length(); i++) {
-			int ch = Integer.parseInt(result.charAt(i) + "");
+			int ch = result.charAt(i) - '0';;
 			nums[ch]++;
 		}
 		
