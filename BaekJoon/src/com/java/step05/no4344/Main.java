@@ -50,10 +50,10 @@ public class Main {
 				}
 			}
 			
-			System.out.printf("%.3f%%", (double)count / scores.length);
-			
+			double result = (double)count / scores.length * 100;
+			System.out.printf("%.3f%%%n", result);
 		}
-
+		
 	}
 
 }
