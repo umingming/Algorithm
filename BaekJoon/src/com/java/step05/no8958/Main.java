@@ -1,10 +1,12 @@
 package com.java.step05.no8958;
 
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
 public class Main {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws NumberFormatException, IOException {
 		/*
 		OX퀴즈의 결과가 주어졌을 떄 점수를 구하는 프로그램을 작성하시오.
 		-첫째 줄에 테스트 케이스 주어짐
@@ -21,26 +23,15 @@ public class Main {
 			>score 출력 
 		 */
 		
-		Scanner scan = new Scanner(System.in);
-		
-		int testCase = scan.nextInt();
+		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+		int testCase = Integer.parseInt(reader.readLine());
 		
 		for(int i=0; i<testCase; i++) {
-			String result = scan.next();
 			int count = 0;
 			int score = 0;
 			
-			for(byte answer : scan.next().getBytes()) {
+			for(byte answer : reader.readLine().getBytes()) {
 				if(answer == 'O'){
-					count++;
-					score += count;
-				} else {
-					count = 0;
-				}
-			}
-			for(int j=0; j<result.length(); j++) {
-				char c = result.charAt(j);
-				if(c == 'O') {
 					count++;
 					score += count;
 				} else {
