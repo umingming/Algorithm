@@ -31,6 +31,7 @@ public class Main {
 				tmp = tmp / 10;	
 			}
 			
+			
 			if(notSelfNum - 1 < 10000) {
 				notSelfNums[notSelfNum - 1] = true;
 			}
