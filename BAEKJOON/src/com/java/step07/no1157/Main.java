@@ -34,6 +34,7 @@ public class Main {
 			alphabet[c - 'A']++;
 		}
 		
+		
 		int highFrequncy = 0;
 		boolean multi = false;
 		
