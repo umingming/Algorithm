@@ -21,6 +21,7 @@ public class Main {
 					>문자 출력
 		 */
 		
+		
 		Scanner scan = new Scanner(System.in);
 		int t = scan.nextInt();
 		
