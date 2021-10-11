@@ -30,6 +30,10 @@ public class Main {
 			sum += num;
 		}
 		
+//		for(byte num : reader.readLine().getBytes()) {
+//			sum += num - '0';
+//		}
+		
 		System.out.println(sum);
 	}
 }
