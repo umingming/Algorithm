@@ -22,6 +22,7 @@ public class No2753Switch {
 				System.out.println("0");
 				break;
 			}
+			break;
 		}
 
 	}
