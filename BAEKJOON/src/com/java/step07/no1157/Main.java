@@ -28,19 +28,22 @@ public class Main {
 		
 		for(int i=0; i<input.length(); i++) {
 			char c = input.charAt(i);
-			if(c < 'A') {
-				c += 'A' - 'a';
+			if(c >= 'a') {
+				c -= 'a' - 'A';
 			}
 			alphabet[c - 'A']++;
 		}
 		
 		
 		int highFrequncy = 0;
+		int result = 0;
 		boolean multi = false;
 		
 		for(int i=0; i<alphabet.length; i++) {
 			if(highFrequncy < alphabet[i]) {
-				highFrequncy = i;
+				highFrequncy = alphabet[i];
+				result = i;
+				multi = false;
 			} else if(highFrequncy == alphabet[i]) {
 				multi = true;
 			}
@@ -49,7 +52,7 @@ public class Main {
 		if(multi) {
 			System.out.println("?");
 		}else {
-			System.out.println('a' + highFrequncy);
+			System.out.println((char)('A' + result));
 		}
 
 	}
