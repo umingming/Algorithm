@@ -23,37 +23,22 @@ public class Main {
 		6. if문 마지막 요소와 그 전 요소의 값이 같은지? 
 		 */
 		Scanner scan = new Scanner(System.in);
-		String input = scan.nextLine();
+		String input = scan.nextLine().toUpperCase();
 		int[] alphabet = new int['z' - 'a' + 1];
+		int max = 0;
+		char result = '?';
 		
 		for(int i=0; i<input.length(); i++) {
-			char c = input.charAt(i);
-			if(c >= 'a') {
-				c -= 'a' - 'A';
-			}
-			alphabet[c - 'A']++;
-		}
-		
-		
-		int highFrequncy = 0;
-		int result = 0;
-		boolean multi = false;
-		
-		for(int i=0; i<alphabet.length; i++) {
-			if(highFrequncy < alphabet[i]) {
-				highFrequncy = alphabet[i];
-				result = i;
-				multi = false;
-			} else if(highFrequncy == alphabet[i]) {
-				multi = true;
+			int num = ++alphabet[input.charAt(i) - 'A'];
+			if(max < num) {
+				max = num;
+				result = input.charAt(i);
+			} else if (max == num) {
+				result = '?';
 			}
 		}
 		
-		if(multi) {
-			System.out.println("?");
-		}else {
-			System.out.println((char)('A' + result));
-		}
+		System.out.println(result);
 
 	}
 
