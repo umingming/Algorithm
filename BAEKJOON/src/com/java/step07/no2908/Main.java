@@ -21,19 +21,24 @@ public class Main {
 		Scanner scan = new Scanner(System.in);
 		String input = scan.nextLine();
 		String[] temp = input.split(" ");
-		String num1 = "";
-		String num2 = "";
 		
-		for(int i=2; i>=0; i--) {
-			num1 += temp[0].charAt(i);
-			num2 += temp[1].charAt(i);
-		}
+		int a = Integer.parseInt(new StringBuilder().append(temp[0]).reverse().toString());
+		int b = Integer.parseInt(new StringBuilder().append(temp[1]).reverse().toString());
 		
-		if(Integer.parseInt(num1)>Integer.parseInt(num2)) {
-			System.out.println(num1);
-		} else {
-			System.out.println(num2);
-		}
+		System.out.println(a > b ? a : b);
+//		String num1 = "";
+//		String num2 = "";
+//		
+//		for(int i=2; i>=0; i--) {
+//			num1 += temp[0].charAt(i);
+//			num2 += temp[1].charAt(i);
+//		}
+//		
+//		if(Integer.parseInt(num1)>Integer.parseInt(num2)) {
+//			System.out.println(num1);
+//		} else {
+//			System.out.println(num2);
+//		}
 
 	}
 
