@@ -32,38 +32,48 @@ public class Main {
 		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 		
 		int num = Integer.parseInt(reader.readLine());
-		int count = num;
+		int cnt = num;
 		
 		for(int i=0; i<num; i++) {
-			HashMap<Character, Integer> map = new HashMap<Character, Integer>();
-			boolean flag = false;
 			String word = reader.readLine();
-			
-			for(int j=0; j<word.length()-1; j++) {
-				if(word.charAt(j) == word.charAt(j+1)) {
-					word = word.substring(0, j) + word.substring(j+1);
-					j--;
+			for(int j=1; j<word.length(); j++) {
+				if(word.indexOf(word.charAt(j - 1)) > word.indexOf(word.charAt(j))) {
+					cnt --;
+					break;
 				}
 			}
-			
-			for(int j=0; j<word.length(); j++) {
-				if(map.containsKey(word.charAt(j))) {
-					map.put(word.charAt(j), map.get(word.charAt(j))+1);
-				} else {
-					map.put(word.charAt(j), 1);
-				}
-			}
-			
-			Set<Character> set = map.keySet();
-			
-			for(Character c : set) {
-				if(map.get(c) > 1) {
-					flag = true;
-				}
-			}
-			if(flag) count--;
 		}
 		
-		System.out.println(count);
+//		for(int i=0; i<num; i++) {
+//			HashMap<Character, Integer> map = new HashMap<Character, Integer>();
+//			boolean flag = false;
+//			String word = reader.readLine();
+//			
+//			for(int j=0; j<word.length()-1; j++) {
+//				if(word.charAt(j) == word.charAt(j+1)) {
+//					word = word.substring(0, j) + word.substring(j+1);
+//					j--;
+//				}
+//			}
+//			
+//			for(int j=0; j<word.length(); j++) {
+//				if(map.containsKey(word.charAt(j))) {
+//					map.put(word.charAt(j), map.get(word.charAt(j))+1);
+//				} else {
+//					map.put(word.charAt(j), 1);
+//				}
+//			}
+//			
+//			Set<Character> set = map.keySet();
+//			
+//			for(Character c : set) {
+//				if(map.get(c) > 1) {
+//					flag = true;
+//				}
+//			}
+//			if(flag) count--;
+//		}
+		
+//		System.out.println(cnt);
 	}
 }
