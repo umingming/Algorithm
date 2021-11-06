@@ -26,6 +26,7 @@ public class Main {
 		int index2 = 1;
 		int cnt = 2;
 		
+		
 		for(int i=0; i<input; i++) {
 			if(i !=0 && i % (6 * index1) == 0) {
 				cnt++;
