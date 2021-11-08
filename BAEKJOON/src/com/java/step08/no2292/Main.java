@@ -33,6 +33,7 @@ public class Main {
 				index1 += index2;
 			}
 		}
+
 		System.out.println(cnt);
 	}
 }
