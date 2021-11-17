@@ -19,6 +19,7 @@ public class Main {
 		5. cnt 출력
 		 */
 		
+		System.out.println((int)'세');
 		Scanner scan = new Scanner(System.in);
 		int input = scan.nextInt();
 		
