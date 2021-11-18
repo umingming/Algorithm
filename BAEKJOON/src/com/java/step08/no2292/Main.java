@@ -18,7 +18,9 @@ public class Main {
 				>cnt, index2++ index1 += index2
 		5. cnt 출력
 		 */
-		
+		if(10 > 5) {
+			System.out.println("안녕하세요");
+		}
 		System.out.println((int)'세');
 		Scanner scan = new Scanner(System.in);
 		int input = scan.nextInt();
