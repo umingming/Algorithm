@@ -1,9 +1,11 @@
 package com.java.step08.no2869;
 
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
 public class Main {
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 		/*
 		달팽이가 나무 막대를 올라가는데 걸리는 시간 구하기
 		나무 막대: Vm, 달팽이가 오르는 거리: Am, 미끄러지는 거리: Bm
@@ -19,10 +21,12 @@ public class Main {
 				>height -= B
 		 */
 		
-		Scanner scan = new Scanner(System.in);
-		int A = scan.nextInt();
-		int B = scan.nextInt();
-		int V = scan.nextInt();
+		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+		
+		String[] tmp = reader.readLine().split(" ");
+		int A = Integer.parseInt(tmp[0]);
+		int B = Integer.parseInt(tmp[1]);
+		int V = Integer.parseInt(tmp[2]);
 		
 		int day = 0;
 		int height = 0;
