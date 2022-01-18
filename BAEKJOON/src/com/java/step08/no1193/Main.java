@@ -20,6 +20,7 @@ public class Main {
 		5. 결과 출력
 		 */
 		
+		test();
 		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 		
 		int n = 1;
@@ -45,4 +46,7 @@ public class Main {
 		System.out.printf("%d/%d", n, m);
 	}
 
+	public void test() {
+		System.out.println("g");
+	}
 }
