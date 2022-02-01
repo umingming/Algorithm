@@ -51,30 +51,33 @@ public class ReportResult {
 		HashMap<String, Integer> map = new HashMap<String, Integer>(report.length);
 		int[] answer = new int[id_list.length];
 		
-		for(String temp : report) {
-			if(!reportList.contains(temp)) {
-				System.out.println(temp);
-				reportList.add(temp);
+		for(int i=0; i<report.length; i++) {
+			if(!reportList.contains(report[i])) {
+				reportList.add(report[i]);
 			}
 		}
 		
-		for(String temp : reportList) {
-			String[] arr = temp.split(" ");
-			if(map.containsKey(arr[1])) {
-				map.put(arr[1], map.get(arr[1]) + 1);
+		for(int i=0; i<reportList.size(); i++) {
+			String[] tmp = reportList.get(i).split(" ");
+			if(map.containsKey(tmp[1])) {
+				map.put(tmp[1], map.get(tmp[1]) + 1);
 			} else {
-				map.put(arr[1], 1);
+				map.put(tmp[1], 1);
 			}
-			
-			if(map.get(arr[1]) >= k) {
-				System.out.println(arr[1]);
-				blockSet.add(arr[1]);
+		}
+		
+		Set<String> set = map.keySet();
+		
+		for(String key : set) {
+			if(map.get(key) >= k) {
+				blockSet.add(key);
 			}
 		}
 		
 		for(int i=0; i<id_list.length; i++) {
 			Iterator<String> blockIter = blockSet.iterator();
 			String temp = "";
+			
 			while(blockIter.hasNext()) {
 				temp = id_list[i] + " " + blockIter.next();
 				if(reportList.contains(temp)) {
