@@ -2,6 +2,9 @@ package com.java.level.one;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Set;
 
 public class ReportResult {
 	public static void main(String[] args) {
@@ -23,13 +26,13 @@ public class ReportResult {
 		 
 		 설계
 		 1. report 배열에서 중복되는 요소 제거
-		 	> ArrayList 객체 생성
+		 	> HashSet 객체 생성
 		 	> 향상된 for문으로 report 반복
-			 	> if String을 포함하는 요소가 list내에 없는지?
-			 		> list에 추가함.
+			 	> if String을 포함하는 요소가 set내에 없는지?
+			 		> set에 추가함.
 		 2. 유저가 몇 번 신고되었는지 횟수 계산
 		 	> HashMap 객체 생성
-		 	> 향상된 for문으로 list 반복
+		 	> 향상된 for문으로 set 반복
 		 		> String을 공백을 기준으로 배열화함.
 		 		> if list의 1번째 요소를 key로 하는 값이 있는지?
 		 			> 있으면 기존 value + 1
@@ -44,12 +47,13 @@ public class ReportResult {
 		 */
 		
 		ArrayList<String> reportList = new ArrayList<String>(report.length);
-		ArrayList<String> blockList = new ArrayList<String>(id_list.length);
+		Set<String> blockSet = new HashSet<String>(id_list.length);
 		HashMap<String, Integer> map = new HashMap<String, Integer>(report.length);
 		int[] answer = new int[id_list.length];
 		
 		for(String temp : report) {
 			if(!reportList.contains(temp)) {
+				System.out.println(temp);
 				reportList.add(temp);
 			}
 		}
@@ -63,13 +67,16 @@ public class ReportResult {
 			}
 			
 			if(map.get(arr[1]) >= k) {
-				blockList.add(arr[1]);
+				System.out.println(arr[1]);
+				blockSet.add(arr[1]);
 			}
 		}
 		
 		for(int i=0; i<id_list.length; i++) {
-			for(int j=0; j<blockList.size(); j++) {
-				String temp = id_list[i] + " " + blockList.get(j);
+			Iterator<String> blockIter = blockSet.iterator();
+			String temp = "";
+			while(blockIter.hasNext()) {
+				temp = id_list[i] + " " + blockIter.next();
 				if(reportList.contains(temp)) {
 					answer[i]++;
 				}
