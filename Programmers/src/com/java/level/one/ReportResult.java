@@ -1,6 +1,7 @@
 package com.java.level.one;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -47,18 +48,19 @@ public class ReportResult {
 		 */
 		
 		ArrayList<String> reportList = new ArrayList<String>(report.length);
+		report = Arrays.stream(report).distinct().toArray(String[]::new);
+		
 		Set<String> blockSet = new HashSet<String>(id_list.length);
 		HashMap<String, Integer> map = new HashMap<String, Integer>(report.length);
 		int[] answer = new int[id_list.length];
 		
-		for(int i=0; i<report.length; i++) {
-			if(!reportList.contains(report[i])) {
-				reportList.add(report[i]);
-			}
+		
+		for(String temp : report) {
+			reportList.add(temp);
 		}
 		
-		for(int i=0; i<reportList.size(); i++) {
-			String[] tmp = reportList.get(i).split(" ");
+		for(String temp : report) {
+			String[] tmp = temp.split(" ");
 			if(map.containsKey(tmp[1])) {
 				map.put(tmp[1], map.get(tmp[1]) + 1);
 			} else {
