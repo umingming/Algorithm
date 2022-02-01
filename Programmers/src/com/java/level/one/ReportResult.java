@@ -11,7 +11,7 @@ public class ReportResult {
 
 		int[] answer = solution(id_list, report, k);
 		
-		System.out.println(answer);
+		System.out.println("" + answer[0] + answer[1] + answer[2]);
 	}
 
 	private static int[] solution(String[] id_list, String[] report, int k) {
@@ -46,6 +46,7 @@ public class ReportResult {
 		ArrayList<String> reportList = new ArrayList<String>();
 		ArrayList<String> blockList = new ArrayList<String>();
 		HashMap<String, Integer> map = new HashMap<String, Integer>();
+		int[] answer = new int[id_list.length];
 		
 		for(String temp : report) {
 			if(!reportList.contains(temp)) {
@@ -67,9 +68,15 @@ public class ReportResult {
 		}
 		
 		for(int i=0; i<id_list.length; i++) {
+			for(int j=0; j<blockList.size(); j++) {
+				String temp = id_list[i] + " " + blockList.get(j);
+				if(reportList.contains(temp)) {
+					answer[i]++;
+				}
+			}
 		}
 		
-		return null;
+		return answer;
 	}
 
 }
