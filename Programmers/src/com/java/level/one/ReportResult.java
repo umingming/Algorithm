@@ -43,9 +43,9 @@ public class ReportResult {
 		 				> answer의 i 번째 요소 ++
 		 */
 		
-		ArrayList<String> reportList = new ArrayList<String>();
-		ArrayList<String> blockList = new ArrayList<String>();
-		HashMap<String, Integer> map = new HashMap<String, Integer>();
+		ArrayList<String> reportList = new ArrayList<String>(report.length);
+		ArrayList<String> blockList = new ArrayList<String>(id_list.length);
+		HashMap<String, Integer> map = new HashMap<String, Integer>(report.length);
 		int[] answer = new int[id_list.length];
 		
 		for(String temp : report) {
