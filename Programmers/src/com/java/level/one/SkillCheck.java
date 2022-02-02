@@ -6,16 +6,18 @@ public class SkillCheck {
 
 	public static void main(String[] args) {
 		int[] arr = {1, 1, 3, 3, 0, 1, 1};
-		int[] answer = solution(arr);
 		
-		System.out.println("" + answer[0] + answer[1] + answer.length);
+		ArrayList<Integer> list = new ArrayList<Integer>();
+		
 	}
 
 	private static int[] solution(int[] arr) {
 		ArrayList<Integer> list = new ArrayList<Integer>();
 		
-		for(int i=0; i<arr.length; i++) {
-			if(listlist.contains(arr[i])) {
+		list.add(arr[0]);
+		
+		for(int i=1; i<arr.length; i++) {
+			if(list.get(list.size()-1) != arr[i]) {
 				list.add(arr[i]);
 			} 
 		}
