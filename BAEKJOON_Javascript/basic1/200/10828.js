@@ -28,14 +28,15 @@ const rl = readline.createInterface({
     output: process.stdout,
 });
 
-let stack = [];
+let nums = [];
+let result = '';
 let cnt;
 
 rl.on("line", (line) => {
     if (cnt === undefined) {
         cnt = line;
     } else {
-        getResult(line);
+        stack(line);
         cnt--;
     }
 
@@ -43,27 +44,28 @@ rl.on("line", (line) => {
 });
 
 rl.on("close", () => {
+    console.log(result);
     process.exit();
 })
 
 
-function getResult(command) {
+function stack(command) {
     switch(command) {
         case 'pop':
-            console.log(stack.length > 0 ? stack.pop() : -1);
+            result += (nums.length > 0 ? nums.pop() : -1) + '\n';
             break;
         case 'size':
-            console.log(stack.length);
+            result += nums.length + '\n';
             break;
         case 'empty':
-            console.log(stack.length === 0 ? 1 : 0);
+            result += (nums.length === 0 ? 1 : 0) + '\n';
             break;
         case 'top':
-            console.log(stack.length > 0 ? stack[stack.length - 1] : -1);
+            result += (nums.length > 0 ? nums[nums.length - 1] : -1) + '\n';
             break;
         default:
             let num = command.split(" ")[1];
-            stack.push(num);
+            nums.push(num);
             break;
     }
 }
