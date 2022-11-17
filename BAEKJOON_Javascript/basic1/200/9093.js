@@ -43,16 +43,16 @@ rl.on("close", () => {
     process.exit();
 })
 
-// function reverse(line) {
-//     let words = line.split(" ");
-//     words.forEach(word => {
-//         for(let i = 0; i < word.length; i++) {
-//             result += word[word.length - 1 - i];
-//         }
-//         result += ' ';
-//     })
-//     result += '\n';
-// }
+function reverse(line) {
+    let words = line.split(" ");
+    words.forEach(word => {
+        for(let i = 0; i < word.length; i++) {
+            result += word[word.length - 1 - i];
+        }
+        result += ' ';
+    })
+    result += '\n';
+}
 
 function reverse(line) {
     const words = line.split(' ');
