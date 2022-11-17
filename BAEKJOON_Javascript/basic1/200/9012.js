@@ -39,14 +39,14 @@ rl.on("line", (line) => {
 rl.on("close", () => {
     console.log(results.join('\n'));
     process.exit();
-})
+});
 
 function isVps(line) {
     if (line[0] === ')') return false;
     if (line[line.length - 1] === '(') return false;
 
-    let rightVsCnt = line.match(/\(/g)?.length;
-    let leftVsCnt = line.match(/\)/g)?.length;
+    let rightVsCnt = line.match(/\(/g).length;
+    let leftVsCnt = line.match(/\)/g).length;
 
     if (rightVsCnt !== leftVsCnt) return false;
 
