@@ -45,10 +45,12 @@ function isVps(line) {
     if (line[0] === ')') return false;
     if (line[line.length - 1] === '(') return false;
 
-    let rightVsCnt = line.match(/\(/g).length;
-    let leftVsCnt = line.match(/\)/g).length;
+    let leftVsCnt = 0;
 
-    if (rightVsCnt !== leftVsCnt) return false;
+    for (let i = 0; i < line.length; i++) {
+        line[i] === '(' ? leftVsCnt++ : leftVsCnt--;
+        if (leftVsCnt < 0) return false;
+    }
 
-    return true;
+    return leftVsCnt === 0 ? true : false;
 }
