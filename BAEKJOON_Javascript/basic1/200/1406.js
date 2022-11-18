@@ -56,10 +56,10 @@ function solution(line) {
 
     switch (command) {
         case 'L': 
-            index--;
+            index = index > 0 ? --index : 0;
             break;
         case 'D':
-            index++;
+            index = index < stack.length ? ++index : stack.length;
             break;
         case 'B':
             stack.splice(index - 1, 1);
@@ -69,5 +69,6 @@ function solution(line) {
             let input = line[2];
             stack.splice(index, 0, input);
             index++;
+            break;
     }
 }
