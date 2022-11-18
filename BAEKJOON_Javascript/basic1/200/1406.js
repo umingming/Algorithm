@@ -67,7 +67,7 @@ function solution(line) {
             index--;
             break;
         default:
-            stack[index] = input;
+            stack.splice(index, 0, input);
             index++;
     }
 }
