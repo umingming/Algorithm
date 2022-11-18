@@ -47,8 +47,8 @@ function isVps(line) {
 
     let leftVsCnt = 0;
 
-    for (let i = 0; i < line.length; i++) {
-        line[i] === '(' ? leftVsCnt++ : leftVsCnt--;
+    for (let vs of line.split('')) {
+        vs === '(' ? leftVsCnt++ : leftVsCnt--;
         if (leftVsCnt < 0) return false;
     }
 
