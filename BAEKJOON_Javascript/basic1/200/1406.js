@@ -53,7 +53,6 @@ rl.on("close", () => {
 
 function solution(line) {
     let command = line[0];
-    let input = line[2];
 
     switch (command) {
         case 'L': 
@@ -67,6 +66,7 @@ function solution(line) {
             index--;
             break;
         default:
+            let input = line[2];
             stack.splice(index, 0, input);
             index++;
     }
