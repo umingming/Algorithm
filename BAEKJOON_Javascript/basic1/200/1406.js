@@ -18,20 +18,56 @@
             > default; index번째 요소에 line[3] 대입
 */
 
-let fs = require("fs");
-let input = fs.readFileSync("/dev/stdin").toString().split("\n");
-let cnt = +input[1];
-let leftStr = input[0].split("");
+// let fs = require("fs");
+// let inputs = fs.readFileSync("/dev/stdin").toString().split("\n");
+
+// let leftStr = inputs[0].split("");
+// let rightStr = [];
+// let cnt = +inputs[1];
+
+// for (let i = 0; i < cnt; i++) {
+//     solution(inputs[i + 2]);
+// }
+// console.log(leftStr.join('') + rightStr.join(''));
+
+const readline = require("readline");
+
+const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout,
+});
+
+let cnt;
+let inputs = [];
+let leftStr = [];
 let rightStr = [];
 
+rl.on("line", (line) => {
+    inputs.push(line);
+    console.log(leftStr.join('') + rightStr.join(''));
 
-for (let i = 0; i < cnt; i++) {
-    solution(input[i + 2]);
-}
-console.log(leftStr.join('') + rightStr.join(''));
+    if (inputs.length === 2) {
+        leftStr = inputs[0].split("");
+        cnt = +inputs[1];
+    }
+    
+    if (inputs.length === cnt + 2) {
+        for (let i = 0; i < cnt; i++) {
+            solution(inputs[i + 2]);
+        }
+        rl.close();
+    }
+});
+
+rl.on("close", () => {
+    console.log(leftStr.join('') + rightStr.reverse().join(''));
+    process.exit();
+});
 
 function solution(input) {
-    switch (input[0]) {
+    let command = input[0];
+
+    switch (command) {
         case 'L': 
             if (leftStr.length > 0) {
                 rightStr.push(leftStr.pop());
