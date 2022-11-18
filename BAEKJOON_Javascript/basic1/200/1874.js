@@ -61,7 +61,7 @@ function solution(line) {
             stack.push(i);
             result += '+\n'
         }
-        index = line;
+        index = +line;
     }
 
     if (stack[stack.length - 1] == line) {
