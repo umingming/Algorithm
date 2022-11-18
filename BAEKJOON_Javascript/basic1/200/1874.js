@@ -64,6 +64,8 @@ function solution(line) {
         index = line;
     }
 
-    stack.pop();
-    result += '-\n';
+    if (stack[stack.length - 1] == line) {
+        stack.pop();
+        result += '-\n';
+    }
 }
