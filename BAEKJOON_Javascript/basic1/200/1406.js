@@ -18,20 +18,38 @@
             > default; index번째 요소에 line[3] 대입
 */
 
-let fs = require("fs");
-let inputs = fs.readFileSync("/dev/stdin").toString().split("\n");
+const readline = require("readline");
 
-let leftStr = inputs[0].split("");
+const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout,
+});
+
+let cnt;
+let leftStr;
 let rightStr = [];
-let cnt = +inputs[1];
 
-for (let i = 0; i < cnt; i++) {
-    solution(inputs[i + 2]);
-}
-console.log(leftStr.join('') + rightStr.reverse().join(''));
+rl.on("line", (line) => {
+    if (leftStr === undefined) {
+        leftStr = line.split('');
+    }
+    if (cnt === undefined) {
+        cnt = line;
+    } else {
+        solution(line);
+        cnt--;
+    }
 
-function solution(input) {
-    let command = input[0];
+    if (cnt === 0) rl.close();
+});
+
+rl.on("close", () => {
+    console.log(leftStr.join('') + rightStr.reverse().join(''));
+    process.exit();
+});
+
+function solution(line) {
+    let command = line[0];
 
     switch (command) {
         case 'L': 
@@ -50,7 +68,8 @@ function solution(input) {
             }
             break;
         case 'P':
-            leftStr.push(input[2]);
+            let input = line[2];
+            leftStr.push(input);
             break;
     }
 }
