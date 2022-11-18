@@ -49,7 +49,7 @@ function solution(input) {
                 leftStr.pop();
             }
             break;
-        default:
+        case 'P':
             leftStr.push(input[2]);
             break;
     }
