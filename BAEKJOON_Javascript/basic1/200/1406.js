@@ -28,14 +28,13 @@ const rl = readline.createInterface({
 
 let str;
 let cnt;
-let index = 0;
-let stack = [];
+let leftStr = [];
+let rightStr = [];
 
 rl.on("line", (line) => {
     if (str === undefined) {
         str = line;
-        index = str.length;
-        stack = str.split('');
+        leftStr = str.split('');
     } else if (cnt === undefined) {
         cnt = line;
     } else {
@@ -47,7 +46,7 @@ rl.on("line", (line) => {
 });
 
 rl.on("close", () => {
-    console.log(stack.join(''));
+    console.log(leftStr.join('') + rightStr.join(''));
     process.exit();
 });
 
@@ -56,21 +55,24 @@ function solution(line) {
 
     switch (command) {
         case 'L': 
-            index = index > 0 ? --index : 0;
+            if (leftStr.length > 0) {
+                rightStr.push(leftStr.pop());
+            }
             break;
         case 'D':
-            index = index < stack.length ? ++index : stack.length;
+            if (rightStr.length > 0) {
+                leftStr.push(rightStr[0]);
+                rightStr.splice(0, 1);
+            }
             break;
         case 'B':
-            if (index > 0) {
-                stack.splice(index - 1, 1);
-                index--;
+            if (leftStr.length > 0) {
+                leftStr.pop();
             }
             break;
         default:
             let input = line[2];
-            stack.splice(index, 0, input);
-            index++;
+            leftStr.push(input);
             break;
     }
 }
