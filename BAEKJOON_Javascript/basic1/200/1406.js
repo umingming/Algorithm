@@ -44,7 +44,7 @@ rl.on("line", (line) => {
 });
 
 rl.on("close", () => {
-    console.log(leftStr.join('') + rightStr.reverse().join(''));
+    console.log(leftStr.join('') + rightStr.join(''));
     process.exit();
 });
 
@@ -54,12 +54,12 @@ function solution(line) {
     switch (command) {
         case 'L': 
             if (leftStr.length > 0) {
-                rightStr.push(leftStr.pop());
+                rightStr.unshift(leftStr.pop());
             }
             break;
         case 'D':
             if (rightStr.length > 0) {
-                leftStr.push(rightStr.pop());
+                leftStr.push(rightStr.shift());
             }
             break;
         case 'B':
