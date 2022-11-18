@@ -62,8 +62,10 @@ function solution(line) {
             index = index < stack.length ? ++index : stack.length;
             break;
         case 'B':
-            stack.splice(index - 1, 1);
-            index--;
+            if (index > 0) {
+                stack.splice(index - 1, 1);
+                index--;
+            }
             break;
         default:
             let input = line[2];
