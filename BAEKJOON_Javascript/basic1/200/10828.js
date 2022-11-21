@@ -29,14 +29,14 @@ const rl = readline.createInterface({
 });
 
 let nums = [];
-let result = '';
+let results = [];
 let cnt;
 
 rl.on("line", (line) => {
     if (cnt === undefined) {
         cnt = line;
     } else {
-        stack(line);
+        results.push(stack(line));
         cnt--;
     }
 
@@ -44,28 +44,32 @@ rl.on("line", (line) => {
 });
 
 rl.on("close", () => {
-    console.log(result);
+    console.log(results);
+    console.log(nums);
+    console.log(results.join('\n'));
     process.exit();
 })
 
+function stack(line) {
+    let command = line.split(' ')[0];
 
-function stack(command) {
     switch(command) {
-        case 'pop':
-            result += (nums.length > 0 ? nums.pop() : -1) + '\n';
-            break;
-        case 'size':
-            result += nums.length + '\n';
-            break;
-        case 'empty':
-            result += (nums.length === 0 ? 1 : 0) + '\n';
-            break;
-        case 'top':
-            result += (nums.length > 0 ? nums[nums.length - 1] : -1) + '\n';
-            break;
-        default:
-            let num = command.split(" ")[1];
+        case 'push':
+            let num = line.split(' ')[1];
             nums.push(num);
-            break;
+            return null;
+        case 'pop':
+            return !isEmpty ? nums.pop() : -1;
+        case 'empty':
+            return isEmpty ? 1 : 0;
+        case 'top':
+            return !isEmpty ? nums[nums.length - 1] : -1;
+        case 'size':
+            return nums.length;
     }
+}
+
+function isEmpty() {
+    let size = nums.length;
+    return (size === 0) ? true : false;
 }
