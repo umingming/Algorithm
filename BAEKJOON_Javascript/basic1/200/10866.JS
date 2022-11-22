@@ -49,16 +49,14 @@ rl.on("close", () => {
 
 function deque(line) {
     let command = line.split(' ')[0];
-    let num = 0;
+    let num = line.split(' ')?.[1];
     let result = '';
 
     switch(command) {
         case 'push_front':
-            num = line.split(' ')[1];
             nums.unshift(num)
             return;
         case 'push_back':
-            num = line.split(' ')[1];
             nums.push(num);
             return;
         case 'size':
