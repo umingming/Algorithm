@@ -47,13 +47,9 @@ function solution(line) {
     }
 
     for (let i = 0; i < n; i++) {
-        console.log(index, nums.length);
-        
         if (index >= nums.length) {
             index -= nums.length;
         }
-
-        console.log(index, nums.length);
 
         results.push(nums[index]);
         nums.splice(index, 1);
