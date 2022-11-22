@@ -48,7 +48,7 @@ function solution(line) {
 
     for (let i = 0; i < n; i++) {
         if (index >= nums.length) {
-            index -= nums.length;
+            index %= nums.length;
         }
 
         results.push(nums[index]);
