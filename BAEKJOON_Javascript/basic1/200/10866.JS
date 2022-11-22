@@ -50,7 +50,7 @@ rl.on("close", () => {
 function deque(line) {
     let command = line.split(' ')[0];
     let num = line.split(' ')?.[1];
-    let result = '';
+    let result;
 
     switch(command) {
         case 'push_front':
@@ -84,5 +84,6 @@ function deque(line) {
 
 function isEmpty() {
     let size = nums.length;
+
     return (size === 0) ? true : false;
 }

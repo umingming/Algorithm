@@ -39,12 +39,8 @@ rl.on("close", () => {
 function solution(line) {
     let n = line.split(' ')[0];
     let k = line.split(' ')[1] - 1;
-    let nums = [];
-    index = k;
-
-    for (let i = 0; i < n; i++) {
-        nums.push(i + 1);
-    }
+    let nums = Array.from({length:n}, (i, index) => index + 1); 
+    let index = k;
 
     for (let i = 0; i < n; i++) {
         if (index >= nums.length) {
