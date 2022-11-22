@@ -44,9 +44,9 @@ rl.on("line", (line) => {
 });
 
 rl.on("close", () => {
-    console.log(results);
-    console.log(nums);
-    console.log(results.join('\n'));
+    let result = results.filter(i => i !== undefined).join('\n');
+    console.log(result);
+
     process.exit();
 })
 
@@ -54,18 +54,18 @@ function stack(line) {
     let command = line.split(' ')[0];
 
     switch(command) {
+        case 'pop':
+            return !isEmpty() ? nums.pop() : -1;
+        case 'empty':
+            return isEmpty() ? 1 : 0;
+        case 'top':
+            return !isEmpty() ? nums[nums.length - 1] : -1;
+        case 'size':
+            return nums.length;
         case 'push':
             let num = line.split(' ')[1];
             nums.push(num);
-            return null;
-        case 'pop':
-            return !isEmpty ? nums.pop() : -1;
-        case 'empty':
-            return isEmpty ? 1 : 0;
-        case 'top':
-            return !isEmpty ? nums[nums.length - 1] : -1;
-        case 'size':
-            return nums.length;
+            break;
     }
 }
 
