@@ -35,23 +35,29 @@ rl.on("close", () => {
 })
 
 function solution(line) {
-    let nums = line.split(' ').reverse().map(i => +i);
+    let leftNums = line.split(' ');
+    let nums = [];
     let results = [];
 
-    while(size--) {
-        let num = nums.pop();
-        let nge = -1;
+    while(leftNums.length) {
+        let leftNum = leftNums.pop();
+        nums.push(leftNum);
 
-        for (let j = size; j-- > 0;) {
-            if (nums[j] > num) {
-                nge = nums[j];
+        let rightNums = [ ...nums ];
+        let nge = -1;
+        
+        while(rightNums.length) {
+            let rightNum = rightNums.pop();
+
+            if (leftNum < rightNum) {
+                nge = rightNum;
                 break;
             }
         }
         results.push(nge);
     }
 
-    console.log(results.join(' '));
+    console.log(results.reverse().join(' '));
     rl.close();
 }
 
