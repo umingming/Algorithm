@@ -35,22 +35,19 @@ rl.on("close", () => {
 })
 
 function solution(line) {
-    let leftNums = line.split(' ');
-    let nums = [];
+    let nums = line.split(' ').reverse();
     let results = [];
+    results.top = function () {
+        return results[results.length - 1] === undefined ? 0 : results[results.length - 1];
+    }
 
-    while(leftNums.length) {
-        let leftNum = leftNums.pop();
-        nums.push(leftNum);
+    while(size--) {
+        let num = nums.pop();
+        let nge = num < results.top() ? results.top() : -1;
 
-        let rightNums = [ ...nums ];
-        let nge = -1;
-        
-        while(rightNums.length) {
-            let rightNum = rightNums.pop();
-
-            if (leftNum < rightNum) {
-                nge = rightNum;
+        for (let i = size; i > 0; i--) {
+            if (num < nums[i - 1]) {
+                nge = nums[i - 1];
                 break;
             }
         }
