@@ -12,7 +12,6 @@
 
     
 */
-const { reverse } = require("dns");
 const readline = require("readline");
 
 const rl = readline.createInterface({
@@ -26,33 +25,29 @@ rl.on("line", (line) => {
 });
 
 rl.on("close", () => {
-    console.log(`<${results.join(', ')}>`);
-
     process.exit();
 })
 
 function solution(line) {
     let phrases = line.split('>');
 
-    for (let i of phrases) {
-        if (i.include('<')) {
-            let phrase = 
-             = reverse(i.split('<')[0])
+    for (let i in phrases) {
+        if (phrases[i].includes('<')) {
+            let phrase = reverse(phrases[i].split('<')[0])
+            let tag = phrases[i].split('<')[1];
+
+            phrases[i] = `${phrase}<${tag}`;
+        } else {
+            phrases[i] = reverse(phrases[i]);
         }
     }
-    let n = line.split(' ')[0];
-    let k = line.split(' ')[1] - 1;
-    let nums = Array.from({length:n}, (i, index) => index + 1); 
-    let index = k;
 
-    for (let i = 0; i < n; i++) {
-        if (index >= nums.length) {
-            index %= nums.length;
-        }
+    console.log(phrases.join('>'));
+}
 
-        results.push(nums[index]);
-        nums.splice(index, 1);
+function reverse(phrase) {
+    let words = phrase.split(' ');
 
-        index += k;
-    }
+    return words.map(i => i.split('').reverse().join(''))
+                .join(' ');
 }
