@@ -32,18 +32,17 @@ function solution(line) {
 
     for (let i in brackets) {
         if (brackets[i] === '(') {
-            sticks.push(0);
+            sticks.push('-');
             continue;
         } 
         
+        sticks.pop();
+        
         if (brackets[i - 1] === '(') {
-            sticks.pop();
-            sticks = sticks.map(i => ++i);
-            console.log(sticks);
+            result += sticks.length;
         } else {
-            result += sticks.pop() + 1;
+            result++;
         }
     }
-
     console.log(result);
 }
