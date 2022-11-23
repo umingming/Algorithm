@@ -54,7 +54,7 @@ function solution(line) {
         results.push(nge);
     }
 
-    console.log(results.reverse().join(' '));
+    console.log(results.join(' '));
     rl.close();
 }
 
