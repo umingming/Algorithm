@@ -35,16 +35,27 @@ rl.on("close", () => {
 })
 
 function solution(line) {
-    let nums = line.split(' ').reverse().map(i => +i);
-    let results = [];
-    results.top = function () {
-        return this[this.length - 1] === undefined ? 0 : this[this.length - 1];
-    }
+    let nums = line.split(' ').map(i => +i);
+    let results = new Array(size);
+    results.fill(-1);
 
+    for (let i = 0; i < size; i++) {
+        let num = nums[i];
+        let top = results[i - 1] === undefined ? 0 : results[i - 1];
+        if (num < top) {
+            results[i] = top;
+        }
+        
+        for (let j = i + 1; j < size; j++) {
+            if (num < nums[j])
+        }
+    }
     while(size--) {
-        console.log(results.top());
-        let num = nums.pop().map;
-        let nge = num < results.top() ? results.top() : -1;
+        for (let i = 0; i < size; i++) {
+
+        }
+        let num = nums.pop();
+        let nge = num < results.top() ? top : -1;
         for (let i = size; i > 0; i--) {
             if (num < nums[i - 1]) {
                 nge = nums[i - 1];
