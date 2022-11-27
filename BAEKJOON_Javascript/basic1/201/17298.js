@@ -24,7 +24,7 @@ let size;
 
 rl.on("line", (line) => {
     if (size === undefined) {
-        size = line;
+        size = +line;
     } else {
         solution(line);
     }
@@ -35,16 +35,16 @@ rl.on("close", () => {
 })
 
 function solution(line) {
-    let nums = line.split(' ').reverse();
+    let nums = line.split(' ').reverse().map(i => +i);
     let results = [];
     results.top = function () {
-        return results[results.length - 1] === undefined ? 0 : results[results.length - 1];
+        return this[this.length - 1] === undefined ? 0 : this[this.length - 1];
     }
 
     while(size--) {
-        let num = nums.pop();
+        console.log(results.top());
+        let num = nums.pop().map;
         let nge = num < results.top() ? results.top() : -1;
-
         for (let i = size; i > 0; i--) {
             if (num < nums[i - 1]) {
                 nge = nums[i - 1];
