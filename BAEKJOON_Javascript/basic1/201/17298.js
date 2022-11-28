@@ -36,36 +36,24 @@ rl.on("close", () => {
 
 function solution(line) {
     let nums = line.split(' ').map(i => +i);
-    let results = new Array(size);
-    results.fill(-1);
+    let stack = [];
 
     for (let i = 0; i < size; i++) {
-        let num = nums[i];
-        let top = results[i - 1] === undefined ? 0 : results[i - 1];
-        if (num < top) {
-            results[i] = top;
-        }
-        
-        for (let j = i + 1; j < size; j++) {
-            if (num < nums[j])
-        }
-    }
-    while(size--) {
-        for (let i = 0; i < size; i++) {
+        stack.push(i);
 
-        }
-        let num = nums.pop();
-        let nge = num < results.top() ? top : -1;
-        for (let i = size; i > 0; i--) {
-            if (num < nums[i - 1]) {
-                nge = nums[i - 1];
+        for (let j = i + 1; j < size; j++) {
+            if (nums[i] < nums[j]) {
+                nums[stack.pop()] = nums[j];
                 break;
             }
         }
-        results.push(nge);
     }
 
-    console.log(results.join(' '));
+    while (stack.length) {
+        nums[stack.pop()] = -1;
+    }
+
+    console.log(nums.join(' '));
     rl.close();
 }
 
