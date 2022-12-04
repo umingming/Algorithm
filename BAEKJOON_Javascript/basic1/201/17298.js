@@ -40,8 +40,10 @@ function solution(line) {
 
     for (let i = 0; i < size; i++) {
         stack.push(i);
-
+        
         for (let j = i + 1; j < size; j++) {
+            if (nums[j] + 1 === nums[stack[stack.length - 2]]) break;
+
             if (nums[i] < nums[j]) {
                 nums[stack.pop()] = nums[j];
                 break;
