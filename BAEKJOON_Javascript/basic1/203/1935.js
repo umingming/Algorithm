@@ -53,7 +53,7 @@ function solution(line) {
         }
     }
 
-    console.log(results[0]);
+    console.log(results[0].toFixed(2));
     rl.close();
 }
 
