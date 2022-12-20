@@ -29,31 +29,38 @@ rl.on("close", () => {
 
 function solution(line) {
     let flag = false;
-    let opearators = [];
+    let operators = [];
     let result = ""
 
     for (let char of line) {
         switch (char) {
-            case '*', '/':
+            case '*':
+            case '/':
                 flag = true;
-            case '+', '-':
-                opearators.push(char);
+            case '+':
+            case '-':
+                operators.push(char);
                 break;
             case '(':
                 flag = false;
                 break;
             case ')':
-                while(opearators.length) {
-                    result += opearators.pop();
+                while(operators.length) {
+                    result += operators.pop();
                 }
                 break;
             default :
                 result += char;
+                if(flag) {
+                    while(operators.length) {
+                        result += operators.pop();
+                    }
+                    flag = false;
+                }
         }
-
     }
-    while(opearators.length) {
-        result += opearators.pop();
+    while(operators.length) {
+        result += operators.pop();
     }
     console.log(result);
     rl.close();
