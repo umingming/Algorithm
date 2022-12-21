@@ -31,11 +31,13 @@ function solution(line) {
     let flag = false;
     let operators = [];
     let result = ""
+    let cnt = 0;
 
     for (let char of line) {
         switch (char) {
             case '*':
             case '/':
+                cnt++;
                 flag = true;
             case '+':
             case '-':
@@ -52,8 +54,8 @@ function solution(line) {
             default :
                 result += char;
                 if(flag) {
-                    while(operators.length) {
-                        result += operators.pop();
+                    while(--cnt) {
+                    result += operators.pop();
                     }
                     flag = false;
                 }
