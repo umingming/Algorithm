@@ -26,16 +26,21 @@ rl.on("line", (line) => {
 
 function solution(line) {
     let nums = line.split(' ').map(i => +i);
-    let rests = [ ...nums ];
-    let gcd;
-
-    do {
-        gcd = Math.min( ...rests );
-        rests[0] = nums[0] % gcd;
-        rests[1] = nums[1] % gcd;
-    } while ( rests[0] > 0 && rests[1] > 0 )
+    let gcd = getGCD(...nums);
+    let lcm = nums[0] * nums[1] / gcd
 
     console.log(gcd);
-    console.log(nums[0] * nums[1] / gcd);
-    
+    console.log(lcm);
+}
+
+function getGCD(x, y) {
+    let rest = Math.min(x, y);
+    let gcd;
+
+    while (rest > 0) {
+        gcd = rest;
+        rest = Math.max(x % rest, y % rest);
+    }
+
+    return gcd;
 }
