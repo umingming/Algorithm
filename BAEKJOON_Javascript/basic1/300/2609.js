@@ -25,22 +25,18 @@ rl.on("line", (line) => {
 });
 
 function solution(line) {
-    let nums = line.split(' ').map(i => +i);
-    let gcd = getGCD(...nums);
-    let lcm = nums[0] * nums[1] / gcd
+    const [x, y] = line.split(' ').map(i => +i);
+    const gcd = getGCD(x, y);
+    const lcm = x * y / gcd
 
     console.log(gcd);
     console.log(lcm);
 }
 
 function getGCD(x, y) {
-    let rest = Math.min(x, y);
-    let gcd;
-
-    while (rest > 0) {
-        gcd = rest;
-        rest = Math.max(x % rest, y % rest);
+    if (x % y === 0) {
+        return y;
     }
 
-    return gcd;
+    return getGCD(y, x % y);
 }
