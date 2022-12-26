@@ -31,6 +31,7 @@ function solution(line) {
 
     console.log(gcd);
     console.log(lcm);
+    
 }
 
 function getGCD(x, y) {
