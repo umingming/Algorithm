@@ -15,9 +15,8 @@ const rl = readline.createInterface({
 });
 
 rl.on("line", (line) => {
-    solution(+line);
-    
     if (line == 0) rl.close();
+    solution(+line);
 });
 
 rl.on("close", () => {
@@ -28,7 +27,7 @@ function solution(num) {
     let median = num / 2;
     let x = 3;
 
-    while(x < median) {
+    while(x <= median) {
         if (isPrimeNum(x) && isPrimeNum(num - x)) {
         console.log(`${num} = ${x} + ${num - x}`)
             return;
