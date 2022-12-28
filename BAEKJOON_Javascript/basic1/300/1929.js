@@ -19,21 +19,15 @@ rl.on("line", (line) => {
 });
 
 function solution(line) {
-    let [M, N] = line.split(" ").map(i => +i);
+    const [min, max] = line.split(" ").map(i => +i);
+    let nums = [...Array(max - min + 1).keys()].map(i => min + i);
 
-    while(M <= N) {
-        checkPrimeNum(M++);
+    let quotient = 1;
+    let sqrt = Math.floor(Math.sqrt(max));
+    
+    while (quotient++ < sqrt) {
+        nums = nums.filter(i => i === quotient || i % quotient);
     }
-}
 
-function checkPrimeNum(num) {
-    if (num === 1) return;
-
-    let sqrt = Math.floor(Math.sqrt(num));
-
-    while(sqrt > 1) {
-        if (num % sqrt === 0) return;
-        sqrt--;
-    }
-    console.log(num);
+    console.log(nums.filter(i => i != 1).join(' '));
 }
