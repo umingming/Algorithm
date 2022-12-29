@@ -17,17 +17,23 @@ rl.on("line", (line) => {
 });
 
 function solution(num) {
-    let result = 1;
-    let cnt = 0;
+    let cntTwo = 0;
+    let cntFive = 0;
 
     while (num) {
-        result *= num--;
+        cntTwo += getQuotient(num, 2);
+        cntFive += getQuotient(num, 5);
+        num--;
     }
 
-    while (!(result % 10)) {
-        result /= 10;
+    console.log(Math.min(cntTwo, cntFive));
+}
+
+function getQuotient(x, y) {
+    let cnt = 0;
+    while (!(x % y)) {
+        x /= y;
         cnt++;
     }
-    
-    console.log(cnt);
+    return cnt;
 }
