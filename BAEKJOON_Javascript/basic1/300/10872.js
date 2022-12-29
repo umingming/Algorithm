@@ -17,11 +17,11 @@ rl.on("line", (line) => {
 });
 
 function solution(num) {
-    let result = num;
+    let result = 1;
 
-    while (num > 1) {
-        result *= --num;
+    while (num) {
+        result *= num--;
     }
 
-    console.log(result || 1);
+    console.log(result);
 }
