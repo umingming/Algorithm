@@ -28,14 +28,10 @@ function solution(line) {
     let results = "";
     while (input.length) {
         let result = 0;
-        // result += input.pop() && 1;
-        console.log(input.pop() && 1);
-        // result += input.pop() && 2;
-        console.log(result);
-        // result += input.pop() && 4;
-        console.log(result);
-
-        results = results + result;
+        result += (+input.pop() && 1) || 0;
+        result += (+input.pop() && 2) || 0;
+        result += (+input.pop() && 4) || 0;
+        results = result + results;
     }
     
     console.log(results);
