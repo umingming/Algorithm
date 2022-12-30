@@ -24,15 +24,28 @@ rl.on("line", (line) => {
 });
 
 function solution(line) {
-    let input = line.split("");
-    let results = "";
-    while (input.length) {
-        let result = 0;
-        result += (+input.pop() && 1) || 0;
-        result += (+input.pop() && 2) || 0;
-        result += (+input.pop() && 4) || 0;
-        results = result + results;
+    let binary = line.split("");
+    let result = "";
+    let octal = 0;
+    let index = 1;
+
+    while (binary.length) {
+        octal += +binary.pop() && index;
+        index *= 2;
+
+        if (index > 4) {
+            result = octal + result;
+            octal = 0;
+            index = 1;
+        }
+
+
+        
+        // let result = 0;
+        // result += (+binary.pop() && 1) || 0;
+        // result += (+input.pop() && 2) || 0;
+        // result += (+input.pop() && 4) || 0;
+        // results = result + results;
     }
-    
-    console.log(results);
+    console.log(result);
 }
