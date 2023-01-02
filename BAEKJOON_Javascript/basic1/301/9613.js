@@ -38,7 +38,6 @@ function solution(line) {
             result += getGCD(nums[i], nums[j]);
         }
     }
-
     console.log(result);
 }
 

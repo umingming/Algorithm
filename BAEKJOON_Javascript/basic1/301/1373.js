@@ -28,7 +28,8 @@ function solution(line) {
     let octal = "";
 
     while (binary.length) {
-        octal = toOctal(binary.pop(), binary.pop(), binary.pop()) + octal;
+        let num = toOctal(binary.pop(), binary.pop(), binary.pop());
+        octal = num + octal;
     }
     console.log(octal);
 }
