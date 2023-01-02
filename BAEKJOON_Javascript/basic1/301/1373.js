@@ -14,7 +14,7 @@
 const readline = require("readline");
 
 const rl = readline.createInterface({
-    binary: process.stdin,
+    input: process.stdin,
     output: process.stdout,
 });
 
