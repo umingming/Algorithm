@@ -26,17 +26,18 @@ rl.on("line", (line) => {
     if (cnt === undefined) {
         cnt = +line;
     } else {
-        solution(line);
+        solution(+line);
     }
 });
 
 function solution(num) {
+    const primeNums = getPrimeNum(num);
     const median = num / 2;
     let x = 3;
     let cnt = 0;
 
     while (x <= median) {
-        if (isPrimeNum(x) && isPrimeNum(num - x)) {
+        if (primeNums[x] && primeNums[num - x]) {
             cnt++;
         }
         x++;
@@ -45,12 +46,13 @@ function solution(num) {
     console.log(cnt);
 }
 
-function isPrimeNum(num) {
-    let x = Math.floor(Math.sqrt(num));
-
-    while(x > 1) {
-        if (num % x === 0) return false;
-        x--;
+function getPrimeNum(num) {
+    let arr = new Array(num + 1).fill(false, 0, 2).fill(true, 2);
+    for (let i = 2; i * i <= num; i++) {
+        if (!arr[i]) continue;
+        for (let j = i * i; j <= num; j += i) {
+            arr[j] = false;
+        }
     }
-    return true;
+    return arr;
 }
