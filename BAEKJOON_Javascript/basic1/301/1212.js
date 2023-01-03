@@ -25,11 +25,9 @@ function solution(line) {
 
     while (octal.length) {
         let num = parseInt(octal.pop(), 8).toString(2).padStart(3, "0");
-        if (!octal.length) {
-            num = +num
-        }
+
         binary = num + binary;
     }
 
-    console.log(binary);
+    console.log(binary.replace(/0+/, ""));
 }
