@@ -33,7 +33,7 @@ rl.on("line", (line) => {
 function solution(num) {
     const primeNums = getPrimeNum(num);
     const median = num / 2;
-    let x = 3;
+    let x = 2;
     let cnt = 0;
 
     while (x <= median) {
