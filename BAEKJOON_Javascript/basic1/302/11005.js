@@ -20,6 +20,5 @@ function solution(line) {
     const [n, b] = line.split(" ").map(i => +i);
 
     const result = n.toString(b).toUpperCase();
-
     console.log(result);
 }
