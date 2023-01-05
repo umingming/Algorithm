@@ -48,7 +48,7 @@ function solution(num) {
 }
 
 function getPrimeFactor(num) {
-    let arr = [ ...Array(num + 1).keys() ];
+    let arr = new Array(num + 1).fill(false, 0, 2).fill(true, 2);
     for (let i = 2; i * i <= num; i++) {
         if (!arr[i]) continue;
 
@@ -56,8 +56,12 @@ function getPrimeFactor(num) {
             arr[j] = 0;
         }
 
-        if (num % arr[i]) arr[i] = 0;
+        arr[i] = num % i ? 0 : i;
     }
 
-    return arr.filter(i => i > 1);
+    arr.forEach((i, j) => { 
+        i = num % j ? 0 : j;
+    });
+
+    return arr.filter(i => i);
 }
