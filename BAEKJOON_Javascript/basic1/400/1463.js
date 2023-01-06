@@ -26,7 +26,7 @@ function solution(num) {
     let result = 0;
     while (num > 1) {
         if (!(num % 3)) num /= 3;
-        else if (!(num % 2) && ((num - 1) % 3)) num /= 2;
+        else if (!(num % 2) && ((num - 1) % 9)) num /= 2;
         else num--;
 
         result++;
