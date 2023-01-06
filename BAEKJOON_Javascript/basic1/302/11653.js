@@ -26,29 +26,17 @@ rl.on("line", (line) => {
 });
 
 function solution(num) {
-    let primes = getPrimeFactor(num);
-    let results = [];
+    let primeFactors = [];
+    let i = 2;
 
-    while (num > 1) {
-        let prime = primes[primes.length - 1];
-        results.push(prime);
-        num /= prime;
-
-        if (num % prime) primes.pop();
-    }
-
-    console.log(results.reverse().join('\n'));
-}
-
-function getPrimeFactor(num) {
-    let arr = [ ...Array(num + 1).keys() ];
-    for (let i = 2; i * i <= num; i++) {
-        if (!arr[i]) continue;
-
-        for (let j = i * i; j <= num; j += i) {
-            arr[j] = 0;
+    while (i <= num) {
+        if (num % i) {
+            i++;
+        } else {
+            primeFactors.push(i);
+            num /= i;
         }
     }
 
-    return arr.filter(i => i > 1 && !(num % i));
+    console.log(primeFactors.join('\n'));
 }
