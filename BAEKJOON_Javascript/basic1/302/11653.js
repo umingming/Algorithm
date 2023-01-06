@@ -48,20 +48,14 @@ function solution(num) {
 }
 
 function getPrimeFactor(num) {
-    let arr = new Array(num + 1).fill(false, 0, 2).fill(true, 2);
+    let arr = [ ...Array(num + 1).keys() ];
     for (let i = 2; i * i <= num; i++) {
         if (!arr[i]) continue;
 
         for (let j = i * i; j <= num; j += i) {
             arr[j] = 0;
         }
-
-        arr[i] = num % i ? 0 : i;
     }
 
-    arr.forEach((i, j) => { 
-        i = num % j ? 0 : j;
-    });
-
-    return arr.filter(i => i);
+    return arr.filter(i => i > 1 && !(num % i));
 }
