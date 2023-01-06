@@ -30,21 +30,14 @@ function solution(num) {
     let results = [];
 
     while (num > 1) {
-        let prime = primes.pop();
-        
-        while (num % prime) {
-            prime = primes.pop();
-        } 
-
+        let prime = primes[primes.length - 1];
         results.push(prime);
-        primes.push(prime);
-
         num /= prime;
+
+        if (num % prime) primes.pop();
     }
 
-    while (results.length) {
-        console.log(results.pop());
-    }
+    console.log(results.reverse().join('\n'));
 }
 
 function getPrimeFactor(num) {
