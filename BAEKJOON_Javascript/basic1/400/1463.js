@@ -1,14 +1,14 @@
 /*
     1로 만들기
     - /3, /2, --만 사용해서 1 만들기
-   
 
-    1. result 변수에 0 할당
-    2. 1이 될 때까지 반복 num > 1
-        > if 3으로 나누어 떨어지는지? /3
-        > else if 2로 나누어 떨어지며 -1을 3으로 나누어 떨어지지 않는지? /2
-        > else --1
-        > result++
+    1. num + 1을 길이로 하는 배열 생성 후 0으로 채우기
+    2. 2부터 num까지 반복
+        > 배열의 요소는 이전 요소 + 1
+        > if 3으로 나누어 떨어지는지?
+            > 몫을 인덱스로 하는 요소의 값 +1 과 현재 요소 중 최소 값
+        > if 2로 나누어 떨어지는지
+            > 몫을 인덱스로 하는 요소의 값 +1 과 현재 요소 중 최소 값
 */
 
 const readline = require("readline");
@@ -23,14 +23,19 @@ rl.on("line", (line) => {
 });
 
 function solution(num) {
-    let result = 0;
-    while (num > 1) {
-        if (!(num % 3)) num /= 3;
-        else if (!(num % 2) && ((num - 1) % 9)) num /= 2;
-        else num--;
+    let results = new Array(num + 1).fill(0);
 
-        result++;
+    for (let i = 2; i < results.length; i++) {
+        results[i] = results[i - 1] + 1;
+        
+        if (!(i % 3)) {
+            results[i] = Math.min(results[i / 3] + 1, results[i]);
+        }
+        
+        if (!(i % 2)) {
+            results[i] = Math.min(results[i / 2] + 1, results[i]);
+        }
     }
 
-    console.log(result);
+    console.log(results[num]);
 }
