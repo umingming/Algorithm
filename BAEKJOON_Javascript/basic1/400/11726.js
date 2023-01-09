@@ -21,15 +21,17 @@ rl.on("line", (line) => {
 });
 
 function solution(num) {
-    let result = [1, 2];
+    let result = [1, 1];
+    let cnt = num - 1;
     
-    while (num-- > result.length) {
+    while (cnt--) {
         let x = result.pop();
-        let y = result.pop();
+        let y = x + result.pop();
         
         result.push(x);
-        result.push(x + y)
+        result.push(y % 10007)
     }
 
-    console.log(result.pop() % 10007);
+    console.log(result.pop());
 }
+
