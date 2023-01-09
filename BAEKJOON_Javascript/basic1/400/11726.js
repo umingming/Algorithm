@@ -22,9 +22,8 @@ rl.on("line", (line) => {
 
 function solution(num) {
     let result = [1, 1];
-    let cnt = num - 1;
     
-    while (cnt--) {
+    while (--num) {
         let x = result.pop();
         let y = x + result.pop();
         
