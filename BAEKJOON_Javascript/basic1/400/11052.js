@@ -46,3 +46,4 @@ function solution(line) {
     console.log(P.pop());
 }
 
+
