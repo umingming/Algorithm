@@ -33,6 +33,7 @@ function solution(line) {
     let j = N + 1;
     for (let i = 1; i < N; i++) {
         
+        
         if (P[i] > P[i-1] + P[0]) {
             j = P[j-1] / j > P[i] / (i + 1) ? j : i + 1;
         } else {
