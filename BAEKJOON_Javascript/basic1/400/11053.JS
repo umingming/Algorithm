@@ -49,6 +49,5 @@ function solution(line) {
             break;
         }
     }
-
     console.log(result.length);
 }
