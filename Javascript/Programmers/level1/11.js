@@ -13,9 +13,9 @@ function solution(s) {
     const chars = s.split("");
     const indexMap = {};
     const result = chars.map((char, i) => {
-        const value = indexMap[char];
+        const oldIndex = indexMap[char] ?? -1;
         indexMap[char] = i;
-        return value ? i - value : -1;
+        return oldIndex < 0 ? oldIndex : i - oldIndex;
     })
     return result;
 }
