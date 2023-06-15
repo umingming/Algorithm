@@ -19,7 +19,6 @@ function solution(n, m, sections) {
         const index = sections.findIndex(i => i >= section + m);
         section = sections[index];
         sections = index >= 0 ? sections.slice(index) : [];
-
         count++;
     }
     return count;
