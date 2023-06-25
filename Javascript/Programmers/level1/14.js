@@ -11,23 +11,17 @@
 */
 function solution(number, limit, power) {
     let answer = 0;
-    
-    function getDivisorCount(num) {
-        const sqrt = Math.sqrt(num);
+
+    for (let i = 1; i <= number; i++) {
+        const sqrt = Math.sqrt(i);
         let count = 0;
         
-        for (let i = 1; i <= sqrt; i++) {
-            if (num % i === 0) {
-                count += i === sqrt ? 1 : 2;
+        for (let j = 1; j <= sqrt; j++) {
+            if (i % j === 0) {
+                count += j === sqrt ? 1 : 2;
             }
         }
-        return count;
-    }
-    
-    for (let i = 1; i <= number; i++) {
-        const count = getDivisorCount(i);
         answer += count > limit ? power : count;
     }
-    
     return answer;
 }
