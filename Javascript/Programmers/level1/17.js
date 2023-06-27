@@ -12,10 +12,7 @@ function solution(ingredient) {
     const count = ingredient.reduce((acc, cur) => {
         store.push(cur);
         if (store.slice(-4).join("") === "1231") {
-            store.pop();
-            store.pop();
-            store.pop();
-            store.pop();
+            store.splice(-4);
             acc++;
         }
         return acc;
