@@ -8,12 +8,17 @@
     
 */
 function solution(ingredient) {
-    ingredient = ingredient.join("");
-    let count = 0;
-    
-    while (ingredient.includes("1231")) {
-        ingredient = ingredient.replace("1231", "");
-        count++;
-    }
+    const store = [];
+    const count = ingredient.reduce((acc, cur) => {
+        store.push(cur);
+        if (store.slice(-4).join("") === "1231") {
+            store.pop();
+            store.pop();
+            store.pop();
+            store.pop();
+            acc++;
+        }
+        return acc;
+    }, 0)
     return count;
 }
