@@ -20,7 +20,6 @@ function solution(numbers) {
             count += numbers.filter(i => a + b + i === 0).length;
             stores.push(b);
         }
-        
         stores.forEach(i => numbers.push(i));
         answer += count;
     }
