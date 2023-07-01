@@ -13,9 +13,9 @@ function solution(babbling) {
     }
     function areWordsConsecutive(words) {
         const pattern = /(aya){2}|(ye){2}|(woo){2}|(ma){2}/
-        return !pattern.test(words);
+        return pattern.test(words);
     }
     
-    const result = babbling.filter(i => areWordsValid(i) && areWordsConsecutive(i)).length;
+    const result = babbling.filter(i => areWordsValid(i) && !areWordsConsecutive(i)).length;
     return result;
 }
