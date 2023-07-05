@@ -16,58 +16,30 @@
     
 */
 function solution(sequence, k) {
-    const parts = sequence.reduce((acc, cur) => {
-        const partSum = acc?.at(-1)?.reduce((acc, cur) => acc + cur, 0) ?? 0;
-        if (partSum === k) {
-            acc.push([cur]);
-        } else if (partSum + cur === k) {
-            if (partSum === 0) {
-                acc.push([cur]);
-            } else {
-                acc.at(-1).push(cur);
-            }
-        } else if (partSum + cur > k) {
-            let flag = true;
-            const part = acc.at(-1);
-            while(part.length) {
-                part.splice(0, 1);
-                if (part.reduce((acc, cur) => acc + cur, 0) + cur === k) {
-                    part.push(cur);
-                    flag = false;
-                    break;
-                }
-            }
-            if (flag) {
-                acc.pop();
-                acc.push([cur]);
-            }
-        } else if (cur === k) {
-            if (partSum === k) {
-                acc.push([cur]);
-            } else {
-                acc.pop();
-                acc.push([cur]);
-            }
-        } else {
-            if (partSum === 0) {
-                acc.push([cur]);
-            } else {
-                acc.at(-1).push(cur);
-            }
+    let part = [];
+    let partSum = 0;
+    const result = [];
+    
+    while (sequence.length && partSum !== k) {
+        const num = sequence.pop();
+        part.push(num);
+        partSum += num;
+        
+        if (partSum > k) {
+            const num = part.splice(0, 1);
+            partSum -= num;
         }
-        return acc;
-    }, [])
+    }
     
-    const partSum = parts?.at(-1)?.reduce((acc, cur) => acc + cur, 0) ?? 0;
-    if (partSum !== k) parts.pop();
+    result[0] = sequence.length;
+    result[1] = result[0] + part.length - 1;
     
-    const min = parts.find(i => i.length === parts.at(-1).length);
-    const result = [
-        sequence.findIndex(i => i === min[0]),
-        sequence.findIndex(i => i === min.at(-1))
-    ]
-    if (min[0] === min.at(-1)) {
-        return [result[0], result[0] + min.length - 1]
+    if (part[0] === part.at(-1)) {
+        const index = sequence.findIndex(i => i === part[0]);
+        if (index > -1) {
+            result[0] = sequence.findIndex(i => i === part[0]);
+            result[1] = result[0] + part.length - 1;
+        }
     }
     return result;
 }
