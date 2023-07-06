@@ -16,28 +16,31 @@
     
 */
 function solution(sequence, k) {
-    let part = [];
+    let partStr = "";
     let partSum = 0;
     const result = [];
     
     while (sequence.length && partSum !== k) {
         const num = sequence.pop();
-        part.push(num);
+        partStr += `${num},`;
         partSum += num;
         
         if (partSum > k) {
-            const num = part.splice(0, 1);
-            partSum -= num;
+            const index = partStr.indexOf(",");
+            partSum -= +partStr.substring(0, index);
+            partStr = partStr.substring(index + 1);
         }
     }
     
+    const part = partStr.split(",");
+    part.pop();
     result[0] = sequence.length;
     result[1] = result[0] + part.length - 1;
     
     if (part[0] === part.at(-1)) {
-        const index = sequence.findIndex(i => i === part[0]);
+        const index = sequence.findIndex(i => i == part[0]);
         if (index > -1) {
-            result[0] = sequence.findIndex(i => i === part[0]);
+            result[0] = index;
             result[1] = result[0] + part.length - 1;
         }
     }
