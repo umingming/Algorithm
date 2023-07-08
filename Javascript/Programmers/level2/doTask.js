@@ -9,8 +9,8 @@
     
 */
 function solution(plans) {
-    const completedTasks = [];
-    const inProgressTasks = [];
+    const stops = [];
+    const result = [];
     
     function transformMin(time) {
         const [hour, min] = time.split(":").map(i => +i);
@@ -18,46 +18,34 @@ function solution(plans) {
     }
     
     function getEndTime(start, playTime) {
+        const toTwoDigits = (num) => (num + "").padStart(2, "0");
         let hour = +start.split(":")[0];
-        let min = +start.split(":")[1] + +playTime;
+        let min = +start.split(":")[1] + +playTime
+        
         hour += Math.floor(min / 60);
-        return `${hour}:${min % 60 || "00"}`;
+        return `${toTwoDigits(hour)}:${toTwoDigits(min % 60)}`;
     } 
-    
-    function doTask(a, b) {
-        if (a[3] === b[1]) {
-            completedTasks.push(a);
-        } else if (a[3] < b[1]) {
-            completedTasks.push(a);
-            if (inProgressTasks.length > 0) {
-                const plan = inProgressTasks.pop();
-                plan[1] = a[3];
-                plans.push(plan);
-            }
-        } else if (a[3] > b[1]) {
-            a[2] = +a[2] - (transformMin(b[1]) - transformMin(a[1]));
-            inProgressTasks.push(a);
-        }
-    }
     
     plans.sort((a, b) => a[1] > b[1] ? -1 : 1);
     
     while (plans.length) {
-        const task = plans.pop();
+        const plan = plans.pop();
         const next = plans.at(-1);
-        task[3] = getEndTime(task[1], task[2]);
+        plan[3] = getEndTime(plan[1], plan[2]);
         
-        if (next) {
-            doTask(task, next);
-        } else {
-            if (inProgressTasks.length > 0) {
-                const plan = inProgressTasks.pop();
-                plan[1] = task[3];
-                plans.push(plan);
-            } 
-            completedTasks.push(task);
+        if (!next || plan[3] < next[1]) {
+            const stop = stops.pop();
+            if (stop) {
+                stop[1] = plan[3];
+                plans.push(stop);
+            }
+            result.push(plan[0]);
+        } else if (plan[3] === next[1]) { 
+            result.push(plan[0]);
+        } else { 
+            plan[2] -= (transformMin(next[1]) - transformMin(plan[1]));
+            stops.push(plan);
         }
     }
-    
-    return completedTasks.map(i => i[0]);
+    return result;
 }
