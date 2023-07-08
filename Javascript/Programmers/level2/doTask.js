@@ -30,27 +30,31 @@ function solution(plans) {
         } else if (a[3] < b[1]) {
             completedTasks.push(a);
             if (inProgressTasks.length > 0) {
-                const task = inProgressTasks.pop();
-                task[1] = a[3];
-                task[3] = getEndTime(task[1], task[2]);
-                doTask(task, b);
+                const plan = inProgressTasks.pop();
+                plan[1] = a[3];
+                plans.push(plan);
             }
         } else if (a[3] > b[1]) {
-            a[2] -= (transformMin(b[1]) - transformMin(a[1]));
+            a[2] = +a[2] - (transformMin(b[1]) - transformMin(a[1]));
             inProgressTasks.push(a);
         }
     }
     
     plans.sort((a, b) => a[1] > b[1] ? -1 : 1);
     
-    while (plans.length || inProgressTasks.length) {
-        const task = plans.pop() || inProgressTasks.pop();
-        const next = plans.at(-1) || inProgressTasks.at(-1);
+    while (plans.length) {
+        const task = plans.pop();
+        const next = plans.at(-1);
         task[3] = getEndTime(task[1], task[2]);
         
         if (next) {
             doTask(task, next);
         } else {
+            if (inProgressTasks.length > 0) {
+                const plan = inProgressTasks.pop();
+                plan[1] = task[3];
+                plans.push(plan);
+            } 
             completedTasks.push(task);
         }
     }
