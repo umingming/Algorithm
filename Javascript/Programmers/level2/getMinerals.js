@@ -6,37 +6,41 @@
     2. 합을 계산해 정렬하기
 */
 function solution(picks, minerals) {
-    const mineralsByFive = minerals.reduce((acc, cur) => {
+    const mineralMap = {
+        diamond: 0,
+        iron: 1,
+        stone: 2,
+    }
+    const pickMap = {
+        0: [1, 1, 1],
+        1: [5, 1, 1],
+        2: [25, 5, 1]
+    }
+    const total = picks.reduce((acc, cur) => acc + cur * 5, 0);
+    const mineralsByFive = minerals.slice(0, total).reduce((acc, cur) => {
         if ([0, 5].includes(acc.at(-1)?.length ?? 0)) {
-            acc.push([cur]);
+            acc.push([mineralMap[cur]]);
         } else {
-            acc.at(-1).push(cur);            
+            acc.at(-1).push(mineralMap[cur]);            
         }
         return acc;
     }, [])
     
-    const getMaxValue = (arr) => {
-        const maxValue = {
-            diamond: 25,
-            iron: 5,
-            stone: 1
-        }
-        return Object.values(arr)[0].reduce((acc, cur) => acc + maxValue[cur], 0);
+    function getValue(mineralObj, pick) {
+        const minerals = Object.values(mineralObj)[0];
+        return minerals.reduce((acc, cur) => acc + pickMap[pick][cur], 0);
     }
     
     const sortedMinerals =  mineralsByFive
-                                .reduce((acc, cur, i) => {
-                                    acc.push({[i]: cur});
-                                    return acc;
-                                }, [])
-                                .sort((a, b) => getMaxValue(a) > getMaxValue(b) ? -1 : 1);
-    sortedMinerals.forEach(i => {
-        const pick = picks[0]-- > 0 ? "dia" : picks[1]-- > 0 ? "iron" : picks[2]-- > 0 ? "stone" : undefined;
-        const value = 
-    })
+                                .reduce((acc, cur, i) => [...acc, {[i]: cur}], [])
+                                .sort((a, b) => getValue(a, 2) > getValue(b, 2) ? -1 : 1)
+                                .map(i => {
+                                    const pick = picks.findIndex(pick => pick > 0);
+                                    picks[pick]--;
+                                    return {...i, result: getValue(i, pick)};
+                                })
     
-    
-    
-    console.log(sortedMinerals)
-    return [];
+    return sortedMinerals
+            .sort((a, b) => Object.keys(a)[0] > Object.keys(b)[0] ? 1 : -1)
+            .reduce((acc, cur) => acc + cur.result, 0);
 }
