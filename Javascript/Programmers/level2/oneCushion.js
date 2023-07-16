@@ -13,13 +13,18 @@ function solution(m, n, startX, startY, balls) {
     function getMinDistance([x, y]) {
         const powX = Math.pow(startX - x, 2);
         const powY = Math.pow(startY - y, 2);
+        const minX = Math.min(startX + x, 2 * m - startX - x);
+        const minY = Math.min(startY + y, 2 * n - startY - y);
+        const getDistance = (pow, diff) => pow + Math.pow(diff, 2);
         
-        if (powX > powY) {
-            const minY = Math.min(startY + y, 2 * n - startY - y);
-            return powX + Math.pow(minY, 2);
+        if (!powX) {
+            const diffY = startY < y ? startY + y : 2 * n - startY - y;
+            return Math.min(getDistance(0, diffY), getDistance(powY, minX))
+        } else if (!powY) {
+            const diffX = startX < x ? startX + x : 2 * m - startX - x;
+            return Math.min(getDistance(0, diffX), getDistance(powX, minY))
         } else {
-            const minX = Math.min(startX + x, 2 * m - startX - x);
-            return powY + Math.pow(minX, 2);
+            return Math.min(getDistance(powX, minY), getDistance(powY, minX));
         }
     }
     
