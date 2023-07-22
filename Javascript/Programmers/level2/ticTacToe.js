@@ -44,7 +44,6 @@ function solution(board) {
     const rowO = getRowBy("O");
     const rowX = getRowBy("X");
     
-    if (rowO + rowX > 1) return 0;
     if (rowO === 1 && countO === countX) return 0;
     if (rowX === 1 && countO > countX) return 0;
     return 1;
