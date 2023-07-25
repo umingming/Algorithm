@@ -10,12 +10,9 @@
 */
 function solution(numbers) {
     const answer = [];
-    
-    for (let i = 0; i < numbers.length; i++) {
-        const larger = numbers.find((num, index) => {
-            return num > numbers[i] && index > i
-        }) ?? -1;
-        answer.push(larger);
-    }
-    return answer;
+    const largers = numbers.map((num, index) => {
+        const larger = numbers.slice(index + 1).find(i => i > num) ?? -1;
+        return larger;
+    })
+    return largers;
 }
