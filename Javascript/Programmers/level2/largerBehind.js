@@ -25,6 +25,9 @@ function solution(numbers) {
                 if (num < behind) {
                     larger = behind;
                     break;
+                } else if (num === behind) {
+                    larger = largers[length + behinds.length - i];
+                    break;
                 }
             }
         }
