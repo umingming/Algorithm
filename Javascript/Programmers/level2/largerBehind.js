@@ -5,15 +5,25 @@
     1. numbers reduce하여 largers 반환
 */
 function solution(numbers) {
-    const largers = numbers.reduce((acc, cur, index) => {
+    const largers = [];
+    
+    for (let i = 0; i < numbers.length;  i++) {
         let larger = -1;
-        if (numbers[index - 1] < cur && acc.at(-1) > cur) {
-            larger = acc.at(-1);
-        } else {
-            const larger = numbers.find((num, i) => i > index && num > cur) ?? -1
-            acc.push(larger);
+        let preLarger = largers.at(-1);
+        
+        if (numbers[i - 1] < numbers[i] && preLarger > numbers[i]) {
+            largers.push(preLarger);
+            continue;
         }
-        return acc;
-    }, []);
+            
+        for (let j = i + 1; j < numbers.length; j++) {
+            if (numbers[j] > numbers[i]) {
+                larger = numbers[j];
+                break;
+            }
+        }
+        
+        largers.push(larger);
+    }
     return largers;
 }
