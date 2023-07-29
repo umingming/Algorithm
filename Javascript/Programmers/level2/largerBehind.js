@@ -7,18 +7,21 @@
 function solution(numbers) {
     const largers = [];
     
-    for (let i = 0; i < numbers.length;  i++) {
+    for (let i = 0; i < numbers.length; i++) {
+        const num = numbers[i];
+        const prevNum = numbers[i - 1];
+        const prevLarger = largers.at(-1);
         let larger = -1;
-        let preLarger = largers.at(-1);
         
-        if (numbers[i - 1] < numbers[i] && preLarger > numbers[i]) {
-            largers.push(preLarger);
+        if (prevNum <= num && (prevLarger > num || prevLarger === -1)) {
+            largers.push(prevLarger);
             continue;
         }
             
         for (let j = i + 1; j < numbers.length; j++) {
-            if (numbers[j] > numbers[i]) {
-                larger = numbers[j];
+            const nextNum = numbers[j];
+            if (nextNum > num) {
+                larger = nextNum;
                 break;
             }
         }
