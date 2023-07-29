@@ -6,27 +6,32 @@
 */
 function solution(numbers) {
     const largers = [];
+    const behinds = [];
     
-    for (let i = 0; i < numbers.length; i++) {
-        const num = numbers[i];
-        const prevNum = numbers[i - 1];
-        const prevLarger = largers.at(-1);
+    while (numbers.length) {
+        const num = numbers.pop();
+        const preNum = behinds.at(-1);
+        const { length } = numbers;
+        const preLarger = largers[length + 1];
         let larger = -1;
         
-        if (prevNum <= num && (prevLarger > num || prevLarger === -1)) {
-            largers.push(prevLarger);
-            continue;
-        }
-            
-        for (let j = i + 1; j < numbers.length; j++) {
-            const nextNum = numbers[j];
-            if (nextNum > num) {
-                larger = nextNum;
-                break;
+        if (num >= preNum && (num < preLarger || preLarger === -1)) {
+            larger = preLarger;
+        } else if (num < preNum) {
+            larger = preNum;
+        } else {
+            for (let i = behinds.length - 1; i > -1; i--) {
+                const behind = behinds[i];
+                if (num < behind) {
+                    larger = behind;
+                    break;
+                }
             }
         }
         
-        largers.push(larger);
+        largers[length] = larger;
+        behinds.push(num);
     }
+    
     return largers;
 }
