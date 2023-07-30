@@ -13,51 +13,27 @@
 */
 
 function solution(x, y, n) {
-    const answers = [];
-    const diff = y - x;
-          
-    const remBySix = y % (6 * x);
-    const quotBySix = y / (6 * x);
+    const getQuotBy = (num) => y / (x * num);
+    const getRemBy = (num) => y % (x * num);
+
+    let count = 0;
+    const countByN = !((y - x) % n) ? (y - x) / n : 0;
     
-    const remByThree = y % (3 * x);
-    const quotByThree = y / (3 * x);
-    
-    const remByTwo = y % (2 * x);
-    const quotByTwo = y / (2 * x);
-    
-    if (!remBySix) {
-        answers.push(quotBySix * 2);
-    } 
-    if (!remByThree) {
-        answers.push(quotByThree);
-    } 
-    if (!remByTwo) {
-        answers.push(quotByTwo);
-    } 
-    if (!(remBySix % (3 * x))) {
-        answers.push(quotBySix * 2 + remBySix / (3 * x));
-    } 
-    if (!(remBySix % (2 * x))) {
-        answers.push(quotBySix * 2 + remBySix / (2 * x));
-    } 
-    if (!(remByThree % (2 * x))) {
-        answers.push(quotByThree + remByThree / (2 * x));
-    } 
-    if (!(remByTwo % (3 * x))) {
-        answers.push(quotByTwo + remByTwo / (3 * x));
-    } 
-    if (!(remBySix % n)) {
-        answers.push(quotBySix * 2 + remBySix / n);
-    } 
-    if (!(remByThree % n)) {
-        answers.push(quotByThree + remByThree / n);
-    } 
-    if (!(remByTwo % n)) {
-        answers.push(quotByTwo + remByTwo / n);
-    } 
-    if (!(diff % n)) {
-        answers.push(diff / n);
+    while (getRemBy(1) && !((y - n) % x)) {
+        y -= n;
+        count++;
     }
     
-    return answers.length ? Math.min(...answers) : -1;
+    while (!getRemBy(2) || !getRemBy(3)) {
+        if (!getRemBy(2)) {
+            y /= 2;
+            count++;
+        }
+        if (!getRemBy(3)) {
+            y /= 3;
+            count++;
+        }
+    }
+    
+    return y === x && count ? Math.min(count, countByN || count) : -1;
 }
