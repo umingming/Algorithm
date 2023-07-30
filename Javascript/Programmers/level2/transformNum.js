@@ -13,27 +13,43 @@
 */
 
 function solution(x, y, n) {
-    const getQuotBy = (num) => y / (x * num);
-    const getRemBy = (num) => y % (x * num);
-
     let count = 0;
-    const countByN = !((y - x) % n) ? (y - x) / n : 0;
     
-    while (getRemBy(1) && !((y - n) % x)) {
-        y -= n;
+    while (y > x && y != x) {
+        const diff = y - n;
+        const countByX = getCount(x, y);
+        const countByN = getCount(x, diff);       
+
+        if ((diff === x || countByN) && countByX > countByN + 1) {
+            count += countByN + 1;
+            y = x;
+            break;
+        } else if (countByX) {
+            count += countByX;
+            y = x;
+            break;
+        }
         count++;
+        y = diff;
+    }
+
+    return y === x && count ? count : -1;
+}
+
+function getCount(x, y) {
+    let count = 0;
+    
+    if (!(y % (x * 3))) {
+        const quot = y / (x * 3);
+        count += quot;
+        y /= quot;
     }
     
-    while (!getRemBy(2) || !getRemBy(3)) {
-        if (!getRemBy(2)) {
-            y /= 2;
-            count++;
-        }
-        if (!getRemBy(3)) {
-            y /= 3;
-            count++;
-        }
+    if (!(y % (x * 2))) {
+        const quot = y / (x * 2);
+        count += quot;
+        y /= quot;
     }
     
-    return y === x && count ? Math.min(count, countByN || count) : -1;
+    return count;
 }
