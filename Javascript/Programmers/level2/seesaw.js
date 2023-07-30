@@ -25,6 +25,7 @@ function solution(weights) {
         }
         count += lengthByWeight * (lengthByWeight - 1) / 2;
         
+        
         const { length } = weights.filter(i => rates.includes(weight / i));
         count += length * lengthByWeight;
     }
