@@ -21,9 +21,9 @@ function solution(nums) {
     nums.sort((a, b) => b - a);
     
     while(nums.length >= 3) {
-        const num = nums.pop();
-        nums.forEach(i => {
-            const { length } = nums.filter(j => j < i && isPrimeNum(i + j + num));
+        const min = nums.pop();
+        nums.forEach(max => {
+            const { length } = nums.filter(num => num < max && isPrimeNum(max + min + num));
             answer += length;
         })
     }
