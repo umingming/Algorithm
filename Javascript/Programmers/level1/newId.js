@@ -18,5 +18,11 @@ function solution(new_id) {
     new_id = new_id.substring(0, 15);
     new_id = new_id.replace(/\.$/g, "");
     new_id = new_id.padEnd(3, new_id.at(-1));
+    Math.sqrt()
     return new_id;
 }
+1, 2 
+1, 3
+1, 2, 4
+1, 5
+2 + 3 -4 + 5
