@@ -20,7 +20,7 @@ function solution(jobs) {
     while(jobs.length) {
         const hasPending = !!jobs.filter(job => job[0] <= now).length;
         if (hasPending) {
-            jobs.sort((a, b) => a[0] <= now ? b[0] <= now ? b[1] - a[1] : 1 : b[0] - a[0]);
+            jobs.sort((a, b) => a[0] <= now ? b[0] <= now ? b[1] - a[1] : a[1] : b[0] - a[0]);
         } else {
             jobs.sort((a, b) => b[0] - a[0] || b[1] - a[1]);
             now = jobs.at(-1)[0];
