@@ -6,15 +6,16 @@
         1) acc자체를 cur map으로 반환한 것의 concat으로 map하기
 */
 function solution(triangle) {
-    const sums = triangle.slice(1).reduce((acc, cur) => {
-        const indexMap = {};
-        acc.forEach(([index, sum]) => {
-            const left = indexMap[index] ?? 0;
-            const right = indexMap[+index + 1] ?? 0;
-            indexMap[index] = left >= +cur[index] + sum ? left : +cur[index] + sum;
-            indexMap[+index + 1] = right >= +cur[+index + 1] + sum ? right : +cur[+index + 1] + sum;       
+    const indexMap = triangle.slice(1).reduce((acc, cur) => {
+        Object.entries(acc).forEach(([index, sum]) => {
+            index = +index;
+            const left = acc[index] ?? 0;
+            const right = acc[index + 1] ?? 0;
+            acc[index] = left >= +cur[index] + sum ? left : +cur[index] + sum;
+            acc[index + 1] = right >= +cur[index + 1] + sum ? right : +cur[index + 1] + sum;       
         });
-        return Object.entries(indexMap);
-    }, [[0, +triangle[0]]]).map(([index, sum]) => sum || 0);
-    return Math.max(...sums);
+        return acc;
+    }, {0: +triangle[0]});
+    const max = Math.max(...Object.values(indexMap).map(value => value || 0));
+    return max;
 }
