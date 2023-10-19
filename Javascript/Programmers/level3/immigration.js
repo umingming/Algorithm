@@ -7,22 +7,38 @@
         2) 첫 번째 요소의 가능한 시간 += 걸리는 시간
 */
 function solution(n, times) {
-    const evaluations = times.map(time => new Evaluation(time));
+    const evaluations = times.sort().map(time => new Evaluation(time));
+    let index = 0;
+
     while (n) {
-        evaluations.sort((a, b) => a.endTime - b.endTime)
-        evaluations[0].evaluate();
-        n--;
+        const left = evaluations.slice(0, index);
+        const right = evaluations.slice(index);
+
+        let tempIndex = left.findIndex(evaludation => evaludation.isEvaluable);
+        if (tempIndex === -1) {
+            tempIndex = right.findIndex(evaludation => evaludation.isEvaluable) + index;
+        }
+        if (tempIndex === index -1) {
+            tempIndex
+            index = right.findIndex(evaludation => evaludation.isEvaluable);
+        }
     }
     return Math.max(...evaluations.map(evaluation => evaluation.startTime));
 }
 
 class Evaluation {
     #startTime = 0;
+    totalTime = 0;
+
     constructor(time) {
         this.time = time;
     }
     evaluate() {
         this.#startTime += this.time;
+        Evaluation.totalTime = this.#startTime;
+    }
+    isEvaluable() {
+        return Evaluation.totalTime >= this.#startTime;
     }
     get startTime() {
         return this.#startTime;
