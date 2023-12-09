@@ -17,7 +17,6 @@ function solution(n, t, m, p) {
         answer += number.toString(n).toUpperCase();
         number++;
     }
-    
     return answer.split("")
                 .filter((_, index) => index % m === p - 1 && index < m * t)
                 .join("");
