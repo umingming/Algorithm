@@ -9,13 +9,14 @@
             > queue가 0이면 return false;
     4. queue가 0인지 반환
 */
-function solution(s){
-    const brackets = s.split("");
+function solution(s) {
     const queue = [];
+
+    if (s[0] !== "(" || s[s.length - 1] !== ")") return false;
+    if (s.match(/[(]/g).length !== s.length / 2) return false;
     
-    while (brackets.length) {
-        const bracket = brackets.pop();
-        if (bracket === ")") {
+    for (const bracket of s) {
+        if (bracket === "(") {
             queue.push(bracket);
         } else if (!queue.length) {
             return false;
