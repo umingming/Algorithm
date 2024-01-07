@@ -17,6 +17,7 @@ function solution(want, number, discount) {
         })) {
             continue;
         }
+        "3".repeat()
         count++;
     }
     
