@@ -8,7 +8,7 @@
     4. 던전을 pop해서 최소 필요 피로도 충족하는지 확인, 안 되면 pass
 */
 function solution(k, dungeons) {
-    dungeons.sort((a, b) => (a[0] - a[1]) - (b[0] - b[1]));
+    dungeons.sort((a, b) => ((a[0] - a[1]) - (b[0] - b[1])) || b[1] - a[1]);
     let result = 0;
     
     while (dungeons.length) {
