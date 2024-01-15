@@ -7,6 +7,7 @@
         > 배열의 문자열 중 POP, PP가 있을 경우 0 반환
         > 아니면 1
     2. places를 map하여 반환
+    
 */
 function solution(places) {
     function checkDistance(place) {
