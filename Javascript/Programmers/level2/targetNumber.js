@@ -17,3 +17,14 @@ function solution(numbers, target) {
     
     return length;
 }
+
+function solution(numbers, target) {
+    let result = [numbers[0], -numbers[0]]
+    for (let i = 1; i < numbers.length; i++) {
+        result = [...result.map(total => total + numbers[i]),
+                    ...result.map(total => total - numbers[i])]
+    }
+    const {length} = result.filter(value => value === target);
+    
+    return length;
+}
