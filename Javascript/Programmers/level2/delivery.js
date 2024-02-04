@@ -17,23 +17,31 @@ function solution(N, road, K) {
     const roadMap = Array.from({length: N + 1}, () => Array(N + 1).fill(0));
     
     for (const [a, b, c] of road) {
-        roadMap[a][b] = roadMap[a][b] ? Math.min(roadMap[a][b], c) : c;
+        const time = roadMap[a][b] ? Math.min(roadMap[a][b], c) : c;
+        roadMap[a][b] = time;
+        roadMap[b][a] = time;
     }
     
-    function getMin(a, b) {
-        const times = [];
-        
-        if (roadMap[a][b]) {
-            times.push(roadMap[a][b])
-        }
-        
-        for (let i = a + 1; i < N; i++) {
-            if (roadMap[a][i]) {
-                const time = roadMap[a][i] + getMin(i, b);
-                times.push(time)l
+    for (let i = N; i > 0; i--) {
+        for (let j = N; j > 0; j--) {
+            if (i === j) continue;
+            
+            for (let k = N; k > 0; k--) {
+                if(i === k || j === k) continue;
+                if(!roadMap[i][k] || !roadMap[j][k]) continue;
+                
+                const time = roadMap[i][j] 
+                        ? Math.min(roadMap[i][j], roadMap[i][k] + roadMap[j][k])
+                        : roadMap[i][k] + roadMap[j][k]
+                
+                roadMap[i][j] = time;
+                roadMap[j][i] = time;
             }
+            
         }
-        
-        return Math.min(...times);
     }
+    
+    const {length} = roadMap[1].filter(value => value && value <= K);
+    
+    return length + 1;
 }
