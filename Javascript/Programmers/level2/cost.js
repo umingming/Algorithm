@@ -1,24 +1,26 @@
 /*
     주식 가격
     
-    1. prices의 크기와 동일한 배열 result 선언, 값은 n -> 0
-    2. while prices 조건으로 반복
-        > prices.pop한 값 선언
-        > for let i = 0; i < result
-            > prices[i] 값이 price보다 클 때 result 재정의
+    1. prices를 map한다; 인자는 (price, i)
+        > findIndex로 index 구한다; newPrice, j
+        > i < j, price > newPrice
+        > index가 있으면 index - i, 없으면 length - i
+        
 */
 function solution(prices) {
-    const {length} = prices;
-    const result = Array.from({length}, (_, index) => length - index - 1);
+    const results = [];
     
-    while (prices.length) {
-        const price = prices.pop();
-        for (let i = 0; i < prices.length; i++) {
-            if (prices[i] > price) {
-                result[i] = prices.length - i;
+    for (let i = 0; i < prices.length; i++) {
+        const price = prices[i];
+        let result = 0;
+        for (let j = i + 1; j < prices.length; j++) {
+            result++;
+            if (price > prices[j]) {
+                break;
             }
         }
+        results.push(result)
     }
     
-    return result;
+    return results;
 }
