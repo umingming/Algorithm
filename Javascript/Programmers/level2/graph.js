@@ -67,7 +67,6 @@ function solution(edges) {
     
     for (let i = 0; i < max + 1; i++) {
         if (!graph[point][i]) continue;
-        
         if (checkDonut(i)) result[1]++;
         else if (checkBar(i)) result[2]++;
         else if (checkPie(i)) result[3]++;
