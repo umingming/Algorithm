@@ -18,6 +18,7 @@ function solution(people, limit) {
         const weight = people.pop();
         if (weight + people[index] > limit) {
             boats.push(weight);
+            weight.split()
         } else {
             boats.push(weight + people[index]);
             index++;
