@@ -10,7 +10,6 @@
     4. 모든 요소를 가지고 있는 것들의 갯수 반환
 */
 function solution(n, results) {
-<<<<<<< HEAD
     const result = [];
     
     for (i = 1; i <= n; i++) {
@@ -52,37 +51,4 @@ function solution(n, results) {
     }
     
     return count;
-=======
-    const result = results.sort((a, b) => a[0] - b[0] || a[1] - b[1]).reduce((acc, [win, lose]) => {
-        const targetWin = acc[win - 1];
-        const targetLose = acc[lose - 1];
-        
-        //lose 기준으로 win 추가
-        targetLose[0].add(win);
-        acc.filter(([target, _]) => target.has(lose))
-            .forEach(([target, _]) => {
-            target.add(win);
-            targetWin[0].forEach(winwin => target.add(winwin));
-        });
-        targetLose[1].forEach(target => {
-            targetWin[1].add(target)
-        });
-        
-        //win 기준으로 lose 추가
-        targetWin[1].add(lose);
-        acc.filter(([_, target]) => target.has(win))
-            .forEach(([_, target]) => {
-            target.add(lose);
-            targetLose[1].forEach(loselose => target.add(loselose));
-        });
-        targetWin[0].forEach(target => {
-            targetLose[0].add(target);
-        });
-        
-        return acc;
-}, Array.from({length:n}, () => [new Set(), new Set()]));
-    
-    const { length } = result.filter(([winSet, loseSet]) => winSet.size + loseSet.size === n - 1);
-    return length;
->>>>>>> 20fb07ba8390f1ea81b780b5539de04cbe95da61
 }
