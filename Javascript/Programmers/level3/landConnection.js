@@ -1,42 +1,23 @@
 /*
-    탐욕법
+    탐욕법; minimum spanning tree, MST
     
-    1. costs를 2번째 요소, 0번째 요소, 1번째 요소 기준으로 내림차순 정렬한다.
-    2. connectionConfig 정의; n 이차배열이며, 요소는 0으로 채움.
-    3. while connectionConfig의 0번째 요소의 slice(1) 배열 중 하나라도 0인 것을 조건으로 반복
-        > costs를 pop해서 start, end, cost 변수를 선언
-        > 해당 값으로 connectionConfig를 채운다.
-        > 0번째 요소에서 0이 아닌 값의 인덱스에 해당되면 상대 인덱스에 해당하는 요소에 해당 금액 기입
-    4. 0번째 요소의 총합을 반환한다.
+    1. costs를 오름차순 정렬한다.
+    2. lands Set과 cost 변수를 정의하여, costs의 첫 번째 요소에 해당하는 값들을 각각에 추가한다.
+    3. while lands의 길이가 n이 될 때까지 반복
+        > costs 중에서, 0번째와 1번째 요소가 하나는 lands에 속하고 하나는 속하지 않는 경우의 인덱스를 구한다.
+        > 해당 값에서 lands에 추가하고, costs를 더한다
+    4. cost 값 반환
 */
 function solution(n, costs) {
-    costs.sort((a, b) => b[2] - a[2] || b[0] - a[0] || b[1] - a[1]);
-    const connectionConfig = Array.from({length: n}, () => Array(n).fill(0));
-    let total = 0;
+    costs.sort((a, b) => a[2] - b[2]);
+    const landSet = new Set(costs[0].slice(0, -1));
+    let total = costs[0][2];
     
-    if (n === 1) {
-        return 0;
-    }
-    
-    while (connectionConfig.every(costs => costs.filter(cost => !cost).length > 1)) {
-        const [start, end, cost] = costs.pop();
-        const startLand = connectionConfig[start];
-        const endLand = connectionConfig[end];
-        
-        if (!startLand[end]) {
-            startLand[end] = cost;
-            endLand[start] = cost;
-            for (let i = 0; i < n; i++) {
-                if (startLand[i] && !endLand[i] && end !== i) {
-                    endLand[i] = cost
-                    connectionConfig[i][end] = cost
-                } else if (!startLand[i] && endLand[i] && start !== i) {
-                    startLand[i] = cost
-                    connectionConfig[i][start] = cost
-                }
-            }
-            total += cost;
-        }
+    while (landSet.size < n) {
+        const [start, end, cost] = costs.find(([start, end]) => [start, end].filter(land => landSet.has(land)).length === 1);
+        landSet.add(start);
+        landSet.add(end);
+        total += cost;
     }
     
     return total;
