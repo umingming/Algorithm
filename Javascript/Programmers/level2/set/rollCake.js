@@ -12,6 +12,14 @@
             > return result;
 */
 function solution(topping) {
+    const toppingConfig = topping.reduce((acc, cur) => {
+        if (!acc[cur]) {
+            acc[cur] = 0;
+        }
+        acc[cur]++;
+        return acc;
+    }, {});
+    
     const allSet = new Set(topping);
     const mySet = new Set();
     
@@ -19,7 +27,8 @@ function solution(topping) {
         let target = topping.pop();
         mySet.add(target);
         
-        if (!topping.includes(target)) {
+        toppingConfig[target]--;
+        if (!toppingConfig[target]) {
             allSet.delete(target);
         }
     }
@@ -28,7 +37,8 @@ function solution(topping) {
         let target = topping.pop();
         let result = 1;
         while (topping.length) {
-            if (!mySet.has(target) || !topping.includes(target)) {
+            toppingConfig[target]--;
+            if (!mySet.has(target) || !toppingConfig[target]) {
                 return result;
             }
             target = topping.pop();
