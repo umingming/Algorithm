@@ -23,7 +23,8 @@ function solution(s, n) {
         
         let code = char.charCodeAt() + n;
         
-        if (code > codeConfig.Z && code < codeConfig.a) {
+        // Z는 90, a는 97이라 대소문자 확인 필요
+        if (/[A-Z]/.test(char) && code > codeConfig.Z) {
             code = code - codeConfig.Z + codeConfig.A - 1;
         } else if (code > codeConfig.z) {
             code = code - codeConfig.z + codeConfig.a - 1;
