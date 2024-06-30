@@ -6,23 +6,28 @@
         > puddles에 해당하면 0유지
 */
 function solution(m, n, puddles) {
-    const dp = Array.from({length: n}, () => Array.from({length: m}, () => 0));
+    const dp = Array.from({length: n}, () => Array(m).fill(0));
     dp[0][0] = 1;
     
+    // 0부터 시작하므로 puddles 재설정
+    const puddleSet = new Set(puddles.map(([x, y]) => `${x - 1},${y - 1}`));
+    
     for (let y = 0; y < n; y++) {
-        // 0부터 시작하므로 puddles 재설정
-        const puddlesByY = puddles
-                                .filter(puddle => puddle[1] === y + 1)
-                                .map(puddle => --puddle[0]);
         for (let x = 0; x < m; x++) {
             // 물구덩이면 패스
-            if (puddlesByY.includes(x) || (x === 0 && y === 0)) {
+            if ((x === 0 && y === 0) || puddleSet.has(`${x},${y}`)) {
                 continue;
             } 
             
-            const left = dp[y][x - 1] ?? 0;
-            const top = dp[y - 1]?.[x] ?? 0;
-            dp[y][x] = (left + top) % 1000000007;
+            if (x > 0) {
+                dp[y][x] += dp[y][x - 1];
+            }
+            
+            if (y > 0) {
+                dp[y][x] += dp[y - 1][x];
+            }
+            // 오버플로우 방지를 위해 나눗셈을 사용함.
+            dp[y][x] %= 1000000007;
         }
     }
     
