@@ -4,12 +4,9 @@ function solution(k, d) {
     
     
     for (let i = 0; i < count; i++) {
-        for (let j = 0; j < count; j++) {
-            if ((i * k) ** 2 + (j * k) ** 2 > d ** 2) {
-                break;
-            }
-            length++;
-        }
+        const x = i * k;
+        const maxY = Math.floor(Math.sqrt(d ** 2 - x ** 2) / k);
+        length += maxY + 1; 
     }
 
     return length;
