@@ -11,24 +11,21 @@
 
 function solution(n, stations, w) {
   let index = 0;
-  const scopes = [];
   const range = 2 * w + 1;
+  let answer = 0;
 
   for (const station of stations) {
     const scope = station - w - index - 1;
     if (scope > 0) {
-      scopes.push(scope);
+      answer += Math.ceil(scope / range);
     }
 
     index = station + w;
   }
 
   if (index < n) {
-    scopes.push(n - index);
+    answer += Math.ceil((n - index) / range);
   }
 
-  return scopes.reduce((acc, cur) => {
-    acc += Math.ceil(cur / range);
-    return acc;
-  }, 0);
+  return answer;
 }
